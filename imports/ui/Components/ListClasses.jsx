@@ -14,12 +14,59 @@ class ListClasses extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            classesSelected: [],
+            classesNotSelected: []
         }
     }
+
+    addNewItem(rowNumber) {
+        let classesSelected = this.state.classesSelected;
+        let classesNotSelected = this.state.classesNotSelected;
+
+        if (classesSelected.includes(rowNumber)) {
+            classesSelected.pop(rowNumber);
+            classesNotSelected.push(rowNumber);
+        }
+        else {
+            classesSelected.push(rowNumber);
+            classesNotSelected.pop(rowNumber);
+        }
+
+        this.setState({ classesSelected: classesSelected, classesNotSelected: classesNotSelected });
+    }
+
+    calculate() {
+        console.log('this.props no ListCLasses = ', this.props);
+        console.log('classesSelected = ', this.state.classesSelected);
+        let remaingClasses = [];
+        let remaingHours = 0;
+        let self = this;
+        let course = this.props.course._id;
+
+        //Save the id's of finished courses
+        this.state.classesSelected.map((item, i) => {
+            remaingClasses.push(self.props.classes[item]._id);
+        });
+
+        //Calculates the total of remaing hours
+        this.state.classesNotSelected.map((item, i) => {
+            remaingHours += item.hours;
+        });
+
+        let item = {
+            course: course,
+            name: 'Henrique Borges',
+            remainingClasses: remaingClasses,
+            remainingHours: remaingHours
+        }
+
+        Meteor.call('addNewRankingItem', item);
+        this.props.history.push('/Ranking');
+    }
+
+
     render() {
         let classes = this.props.classes;
-        console.log("this.props = ", this.props)
         return (
             <div>
                 {this.props.loading ?
@@ -27,11 +74,11 @@ class ListClasses extends Component {
                     :
                     <div>
                         {this.props.calculate ?
-                            <Table multiSelectable={true}>
-                                <TableHeader style={{ backgroundColor: '#0E6094'}}>
+                            <Table multiSelectable={true} onCellClick={(rowNumber) => this.addNewItem(rowNumber)}>
+                                <TableHeader style={{ backgroundColor: '#0E6094' }}>
                                     <TableRow>
-                                        <TableHeaderColumn style={{color:'white', fontWeight: 'bold'}}>Disciplina</TableHeaderColumn>
-                                        <TableHeaderColumn style={{color:'white', fontWeight: 'bold'}}>Semestre</TableHeaderColumn>
+                                        <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Disciplina</TableHeaderColumn>
+                                        <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Semestre</TableHeaderColumn>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -45,11 +92,11 @@ class ListClasses extends Component {
                             </Table>
                             :
                             <Table selectable={false}>
-                                <TableHeader style={{ backgroundColor: '#0E6094'}}>
+                                <TableHeader style={{ backgroundColor: '#0E6094' }}>
                                     <TableRow>
-                                        <TableHeaderColumn style={{color:'white', fontWeight: 'bold'}}>Disciplina</TableHeaderColumn>
-                                        <TableHeaderColumn style={{color:'white', fontWeight: 'bold'}}>Carga horária</TableHeaderColumn>
-                                        <TableHeaderColumn style={{color:'white', fontWeight: 'bold'}}>Semestre</TableHeaderColumn>
+                                        <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Disciplina</TableHeaderColumn>
+                                        <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Carga horária</TableHeaderColumn>
+                                        <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Semestre</TableHeaderColumn>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -70,8 +117,8 @@ class ListClasses extends Component {
                             buttonStyle={{ backgroundColor: '#ff7f00' }}
                             labelColor='white'
                             labelStyle={{ fontWeight: 'bold' }}
-                            style={{float: 'right', marginTop: '5%'}}
-                            onClick={() => this.props.history.push('/CalculateTime/')}
+                            style={{ float: 'right', marginTop: '5%' }}
+                            onClick={() => this.calculate()}
                         />
                         <RaisedButton
                             label='Voltar'
@@ -80,7 +127,7 @@ class ListClasses extends Component {
                             buttonStyle={{ backgroundColor: '#ff7f00' }}
                             labelColor='white'
                             labelStyle={{ fontWeight: 'bold' }}
-                            style={{float: 'left', marginTop: '5%'}}
+                            style={{ float: 'left', marginTop: '5%' }}
                             onClick={() => this.props.history.push('/')}
                         />
                     </div>

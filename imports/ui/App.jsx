@@ -10,6 +10,7 @@ import { Professors } from '../api/professors.js';
 import Home from './Components/Home.jsx';
 import About from './Components/About.jsx';
 import ListClasses from './Components/ListClasses.jsx';
+import RankingList from './Components/RankingList.jsx';
 
 //Material-ui
 import { default as Theme } from 'material-ui/styles/MuiThemeProvider';
@@ -32,16 +33,15 @@ const muiTheme = getMuiTheme({
 
 // App component - represents the whole app
 class App extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             course: {}
         }
     }
 
-    setCourse(course){
-        console.log('course = ', course);
-        this.setState({course: course});
+    setCourse(course) {
+        this.setState({ course: course });
     }
 
     render() {
@@ -86,6 +86,13 @@ class App extends Component {
                                         {...props} />
                                 }
                             />
+                            <Route path='/Ranking'
+                                render={(props) =>
+                                    <RankingList
+                                        course={this.state.course}
+                                        {...props} />
+                                }
+                            />
                         </Switch>
                     </Router>
                 </div>
@@ -102,7 +109,7 @@ export default createContainer(() => {
 
     if (handleGraduationCourses.ready())
         graduationCourses = GraduationCourses.find({}).fetch();
-    
+
     if (handleProfessors.ready())
         professors = Professors.find({}).fetch();
 
