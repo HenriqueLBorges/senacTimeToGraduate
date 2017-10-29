@@ -4,6 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 //Collections
 import { GraduationCourses } from '../api/graduation_courses.js';
+import { Professors } from '../api/professors.js';
 
 //Components
 import Home from './Components/Home.jsx';
@@ -53,6 +54,7 @@ class App extends Component {
                                 render={(props) =>
                                     <Home
                                         graduationCourses={this.props.graduationCourses}
+                                        professors={this.props.professors}
                                         loading={this.props.loading}
                                         setCourse={this.setCourse.bind(this)}
                                         {...props} />
@@ -95,12 +97,18 @@ class App extends Component {
 export default createContainer(() => {
     let handleGraduationCourses = Meteor.subscribe("graduation_courses");
     let graduationCourses;
+    let handleProfessors = Meteor.subscribe("professors");
+    let professors;
 
     if (handleGraduationCourses.ready())
         graduationCourses = GraduationCourses.find({}).fetch();
+    
+    if (handleProfessors.ready())
+        professors = Professors.find({}).fetch();
 
     return {
         graduationCourses: graduationCourses,
-        loading: !handleGraduationCourses.ready()
-    };
+        professors: professors,
+        loading: !handleGraduationCourses.ready() && !handleProfessors.ready()
+    }
 }, App);

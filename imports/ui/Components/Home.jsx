@@ -16,12 +16,18 @@ class Home extends Component {
       value: -1,
       showCard: false,
       course: {},
-      teste: true
+      teste: true,
+      coordinator: {}
     }
   }
 
   handleChange(index, course) {
-    this.setState({ value: index, course: course, showCard: true });
+    let professors = this.props.professors;
+    let coordinator;
+    professors.map((professor, i) => {
+      if(professor._id == course.coordinator) coordinator = professor;
+    })
+    this.setState({ value: index, course: course, showCard: true, coordinator: coordinator});
     this.props.setCourse(course)
   }
 
@@ -39,7 +45,7 @@ class Home extends Component {
               <div style={{ textAlign: 'center' }}>
                 <Paper zDepth={1} rounded={false}>
                   <img src="http://www.go.senac.br/portal/images/logo211x124.jpg" alt="Smiley face" />
-                  <h1 style={{ marginTop: '5%', marginBottom: '5%' }}>Calculador de Graduação</h1>
+                  <h1 style={{ marginTop: '5%', marginBottom: '5%' }}>Calculadora de Graduação</h1>
                   <RaisedButton
                     label="Sobre"
                     labelPosition="before"
@@ -85,8 +91,8 @@ class Home extends Component {
           <Card>
             <CardHeader
               title={'Coordenador'}
-              subtitle={this.state.course.coordinator}
-              avatar={this.state.course.coordinator_photo}
+              subtitle={this.state.coordinator.name}
+              avatar={this.state.coordinator.photo}
             />
             <CardTitle title={"Curso"} subtitle={this.state.course.name} />
             <CardText>
