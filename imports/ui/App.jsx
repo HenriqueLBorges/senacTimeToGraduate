@@ -62,7 +62,7 @@ class App extends Component {
                             />
                             <Route path='/About'
                                 render={(props) =>
-                                    <Home
+                                    <About
                                         graduationCourses={this.props.graduationCourses}
                                         loading={this.props.loading}
                                         {...props} />

@@ -29,6 +29,7 @@ Meteor.methods({
     Ranking.insert({
       'course': item.course,
       'name': item.name,
+      'classes': item.classes,
       'remainingClasses': item.remainingClasses,
       'remainingHours': item.remainingHours
     });

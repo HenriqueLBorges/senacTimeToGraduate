@@ -10,7 +10,7 @@ class About extends Component {
     }
     render() {
         return (
-            <div>About page</div>
+            <div>Aplicação feita com Meteor e React 2017.</div>
         );
     }
 }

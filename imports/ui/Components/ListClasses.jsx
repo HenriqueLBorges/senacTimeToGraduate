@@ -14,51 +14,51 @@ class ListClasses extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            classesSelected: [],
-            classesNotSelected: []
+            classesSelected: []
         }
     }
 
     addNewItem(rowNumber) {
         let classesSelected = this.state.classesSelected;
-        let classesNotSelected = this.state.classesNotSelected;
 
-        if (classesSelected.includes(rowNumber)) {
+        if (classesSelected.includes(rowNumber))
             classesSelected.pop(rowNumber);
-            classesNotSelected.push(rowNumber);
-        }
-        else {
+        else
             classesSelected.push(rowNumber);
-            classesNotSelected.pop(rowNumber);
-        }
 
-        this.setState({ classesSelected: classesSelected, classesNotSelected: classesNotSelected });
+        this.setState({ classesSelected: classesSelected });
     }
 
     calculate() {
-        console.log('this.props no ListCLasses = ', this.props);
-        console.log('classesSelected = ', this.state.classesSelected);
-        let remaingClasses = [];
+        let remaingClasses = this.props.allClasses.filter(x => !~this.state.classesSelected.indexOf(x));
+        let remaingClassesAux = [];
+        let classes = [];
         let remaingHours = 0;
         let self = this;
         let course = this.props.course._id;
 
         //Save the id's of finished courses
         this.state.classesSelected.map((item, i) => {
-            remaingClasses.push(self.props.classes[item]._id);
+            classes.push(self.props.classes[item]._id);
         });
 
-        //Calculates the total of remaing hours
-        this.state.classesNotSelected.map((item, i) => {
-            remaingHours += item.hours;
+        //Save the id's of the remaining courses Calculates the total of remaing hours
+        remaingClasses.map((item, i) => {
+            remaingClassesAux.push(self.props.classes[item]._id);
+            console.log('hours = ', self.props.classes[item].hours)
+            remaingHours = remaingHours + self.props.classes[item].hours;
         });
+        console.log('remaingClasses = ', remaingClasses)
 
         let item = {
             course: course,
             name: 'Henrique Borges',
-            remainingClasses: remaingClasses,
+            classes: classes,
+            remainingClasses: remaingClassesAux,
             remainingHours: remaingHours
         }
+
+        console.log('item = ', item);
 
         Meteor.call('addNewRankingItem', item);
         this.props.history.push('/Ranking');
@@ -141,12 +141,19 @@ class ListClasses extends Component {
 export default createContainer((props) => {
     let handleClasses = Meteor.subscribe('classes', props.course._id);
     let classes;
+    let allClasses = [];
 
-    if (handleClasses.ready())
+    if (handleClasses.ready()) {
         classes = Classes.find({ 'course_ids': props.course._id }).fetch();
+        classes.map((item, i) => {
+            allClasses.push(i);
+        })
+        //console.log('classesNotSelected ', allClasses);
+    }
 
     return {
         classes: classes,
-        loading: !handleClasses.ready()
+        loading: !handleClasses.ready(),
+        allClasses: allClasses
     };
 }, ListClasses);

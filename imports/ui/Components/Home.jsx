@@ -54,7 +54,17 @@ class Home extends Component {
                     buttonStyle={{ backgroundColor: '#ff7f00' }}
                     labelColor='white'
                     labelStyle={{ fontWeight: 'bold' }}
-                    onClick={() => this.props.router.history.push('/About/')}
+                    onClick={() => this.props.history.push('/About/')}
+                  />
+                  <RaisedButton
+                    label="Ranking"
+                    labelPosition="before"
+                    containerElement="label"
+                    style={{ marginBottom: '3.6%'}}
+                    buttonStyle={{ backgroundColor: '#ff7f00' }}
+                    labelColor='white'
+                    labelStyle={{ fontWeight: 'bold' }}
+                    onClick={() => this.props.history.push('/Ranking/')}
                   />
                   <RaisedButton
                     label="Começar"

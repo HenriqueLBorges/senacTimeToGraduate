@@ -41,7 +41,7 @@ class RankingList extends Component {
                             {ranking.map((student, i) => {
                                 return <TableRow rowNumber={i + 1}>
                                     <TableRowColumn>{student.name}</TableRowColumn>
-                                    <TableRowColumn>{student.remainingClasses} matérias</TableRowColumn>
+                                    <TableRowColumn>{student.remainingClasses.length} matérias</TableRowColumn>
                                     <TableRowColumn>{student.remainingHours} horas</TableRowColumn>
                                 </TableRow>
                             })}
@@ -54,7 +54,6 @@ class RankingList extends Component {
 }
 
 export default createContainer((props) => {
-    console.log("props no ranking = ", props)
     let handleRanking = Meteor.subscribe("ranking", props.course._id);
     let ranking;
     let handleGraduationCourses = Meteor.subscribe("graduation_courses");
@@ -66,8 +65,7 @@ export default createContainer((props) => {
         if (handleGraduationCourses.ready()) {
             ranking.map((item, i) => {
                 ranking.course = GraduationCourses.findOne({});
-            })
-            console.log('ranking = ', ranking);
+            });
         }
     }
 
