@@ -76,11 +76,10 @@ class Home extends Component {
                     labelPosition="before"
                     containerElement="label"
                     style={{ marginBottom: '1.5%', marginRight: '10%' }}
-                    buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
+                    buttonStyle={{ backgroundColor: '#ff7f00' }}
                     labelColor='white'
                     labelStyle={{ fontWeight: 'bold' }}
                     onClick={() => this.props.history.push('/About/')}
-                    disabled={!this.props.currentUser}
                   />
                   <RaisedButton
                     label={this.props.currentUser ? "Logout" : "Entrar com Facebook"}
