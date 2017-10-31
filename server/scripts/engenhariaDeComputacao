@@ -1,7 +1,7 @@
 /*db.classes.insertMany([
     {
         '_id': '1',
-        'hours': '36',
+        'hours': 36,
         'name': 'Ciências Ambientais',
         'professors': [],
         'description': '',
@@ -10,7 +10,7 @@
     },
     {
         '_id': '2',
-        'hours': '72',
+        'hours': 72,
         'name': 'Desenho Técnico e Geometria Descritiva',
         'professors': [],
         'description': '',
@@ -19,7 +19,7 @@
     },
     {
         '_id': '3',
-        'hours': '36',
+        'hours': 36,
         'name': 'Fundamentos da Engenharia',
         'professors': [],
         'description': '',
@@ -28,7 +28,7 @@
     },
     {
         '_id': '4',
-        'hours': '72',
+        'hours': 72,
         'name': 'Linguagem de Programação',
         'professors': [],
         'description': '',
@@ -37,7 +37,7 @@
     },
     {
         '_id': '5',
-        'hours': '72',
+        'hours': 72,
         'name': 'Pré-calculo',
         'professors': [],
         'description': '',
@@ -46,7 +46,7 @@
     },
     {
         '_id': '6',
-        'hours': '36',
+        'hours': 36,
         'name': 'Projeto Interativo I',
         'professors': [],
         'description': '',
@@ -55,7 +55,7 @@
     },
     {
         '_id': '7',
-        'hours': '72',
+        'hours': 72,
         'name': 'Química Geral e Experimental',
         'professors': [],
         'description': '',
@@ -64,7 +64,7 @@
     },
     {
         '_id': '8',
-        'hours': '36',
+        'hours': 36,
         'name': 'Comunicação e Redação Técnica',
         'professors': [],
         'description': '',
@@ -73,7 +73,7 @@
     },
     {
         '_id': '9',
-        'hours': '36',
+        'hours': 36,
         'name': 'Circuitos Digitais I',
         'professors': [],
         'description': '',
@@ -82,7 +82,7 @@
     },
     {
         '_id': '10',
-        'hours': '36',
+        'hours': 36,
         'name': 'Geometria Analítica',
         'professors': [],
         'description': '',
@@ -91,7 +91,7 @@
     },
     {
         '_id': '11',
-        'hours': '72',
+        'hours': 72,
         'name': 'Cálculo Diferencial e Integral I',
         'professors': [],
         'description': '',
@@ -100,7 +100,7 @@
     },
     {
         '_id': '12',
-        'hours': '72',
+        'hours': 72,
         'name': 'Ética e Responsabilidade Social na Engenharia',
         'professors': [],
         'description': '',
@@ -109,7 +109,7 @@
     },
     {
         '_id': '13',
-        'hours': '72',
+        'hours': 72,
         'name': 'Física I',
         'professors': [],
         'description': '',
@@ -118,7 +118,7 @@
     },
     {
         '_id': '14',
-        'hours': '72',
+        'hours': 72,
         'name': 'Laboratório de Física I',
         'professors': [],
         'description': '',
@@ -127,7 +127,7 @@
     },
     {
         '_id': '15',
-        'hours': '36',
+        'hours': 36,
         'name': 'Projeto Interativo II',
         'professors': [],
         'description': '',
@@ -136,7 +136,7 @@
     },
     {
         '_id': '16',
-        'hours': '72',
+        'hours': 72,
         'name': 'Algorítmos e Programação',
         'professors': [],
         'description': 'Equivalente à Algorítmos e Programação II em qualquer outro curso.',
@@ -145,7 +145,7 @@
     },
     {
         '_id': '17',
-        'hours': '36',
+        'hours': 36,
         'name': 'Circuitos Digitais II',
         'professors': [],
         'description': '',
@@ -154,7 +154,7 @@
     },
     {
         '_id': '18',
-        'hours': '36',
+        'hours': 36,
         'name': 'Álgebra Linear I',
         'professors': [],
         'description': '',
@@ -163,7 +163,7 @@
     },
     {
         '_id': '19',
-        'hours': '72',
+        'hours': 72,
         'name': 'Cálculo Diferencial e Integral II',
         'professors': [],
         'description': '',
@@ -172,7 +172,7 @@
     },
     {
         '_id': '20',
-        'hours': '72',
+        'hours': 72,
         'name': 'Estatística e Probabilidade',
         'professors': [],
         'description': '',
@@ -181,7 +181,7 @@
     },
     {
         '_id': '21',
-        'hours': '72',
+        'hours': 72,
         'name': 'Física II',
         'professors': [],
         'description': '',
@@ -190,7 +190,7 @@
     },
     {
         '_id': '22',
-        'hours': '72',
+        'hours': 72,
         'name': 'Programação Orientada a Objetos',
         'professors': [],
         'description': '',
@@ -199,7 +199,7 @@
     },
     {
         '_id': '23',
-        'hours': '36',
+        'hours': 36,
         'name': 'Laboratório de Física II',
         'professors': [],
         'description': '',
@@ -208,7 +208,7 @@
     },
     {
         '_id': '24',
-        'hours': '36',
+        'hours': 36,
         'name': 'Projeto Interativo III',
         'professors': [],
         'description': '',
@@ -217,7 +217,7 @@
     },
     {
         '_id': '25',
-        'hours': '72',
+        'hours': 72,
         'name': 'Cálculo Diferencial e Integral III',
         'professors': [],
         'description': '',
@@ -226,7 +226,7 @@
     },
     {
         '_id': '26',
-        'hours': '36',
+        'hours': 36,
         'name': 'Ciência e Tecnologia dos Materiais',
         'professors': [],
         'description': '',
@@ -235,7 +235,7 @@
     },
     {
         '_id': '27',
-        'hours': '72',
+        'hours': 72,
         'name': 'Estática',
         'professors': [],
         'description': '',
@@ -244,7 +244,7 @@
     },
     {
         '_id': '28',
-        'hours': '72',
+        'hours': 72,
         'name': 'Física III',
         'professors': [],
         'description': '',
@@ -253,7 +253,7 @@
     },
     {
         '_id': '29',
-        'hours': '36',
+        'hours': 36,
         'name': 'Projeto Interativo IV',
         'professors': [],
         'description': '',
@@ -262,7 +262,7 @@
     },
     {
         '_id': '30',
-        'hours': '72',
+        'hours': 72,
         'name': 'Estruturas de Dados',
         'professors': [],
         'description': '',
@@ -271,7 +271,7 @@
     },
     {
         '_id': '31',
-        'hours': '72',
+        'hours': 72,
         'name': 'Laboratório Digital',
         'professors': [],
         'description': '',
@@ -280,7 +280,7 @@
     },
     {
         '_id': '32',
-        'hours': '72',
+        'hours': 72,
         'name': 'Organização de Sistemas Digitais',
         'professors': [],
         'description': '',
@@ -289,7 +289,7 @@
     },
     {
         '_id': '33',
-        'hours': '72',
+        'hours': 72,
         'name': 'Circuitos Elétricos',
         'professors': [],
         'description': '',
@@ -298,7 +298,7 @@
     },
     {
         '_id': '34',
-        'hours': '36',
+        'hours': 36,
         'name': 'Álgebra Linear II',
         'professors': [],
         'description': '',
@@ -307,7 +307,7 @@
     },
     {
         '_id': '35',
-        'hours': '72',
+        'hours': 72,
         'name': 'Cálculo Numérico',
         'professors': [],
         'description': '',
@@ -316,7 +316,7 @@
     },
     {
         '_id': '36',
-        'hours': '72',
+        'hours': 72,
         'name': 'Laboratório de Eletricidade',
         'professors': [],
         'description': '',
@@ -325,7 +325,7 @@
     },
     {
         '_id': '37',
-        'hours': '72',
+        'hours': 72,
         'name': 'Fenômenos de Transporte',
         'professors': [],
         'description': '',
@@ -334,7 +334,7 @@
     },
     {
         '_id': '38',
-        'hours': '36',
+        'hours': 36,
         'name': 'Projeto Interativo V',
         'professors': [],
         'description': '',
@@ -343,7 +343,7 @@
     },
     {
         '_id': '39',
-        'hours': '72',
+        'hours': 72,
         'name': 'Arquitetura de Computadores',
         'professors': [],
         'description': '',
@@ -352,7 +352,7 @@
     },
     {
         '_id': '39',
-        'hours': '72',
+        'hours': 72,
         'name': 'Ondas e Eletromagnetismo',
         'professors': [],
         'description': '',
@@ -361,7 +361,7 @@
     },
     {
         '_id': '40',
-        'hours': '36',
+        'hours': 36,
         'name': 'Eletricidade Aplicada',
         'professors': [],
         'description': '',
@@ -370,7 +370,7 @@
     },
     {
         '_id': '41',
-        'hours': '72',
+        'hours': 72,
         'name': 'Eletrônica',
         'professors': [],
         'description': '',
@@ -379,7 +379,7 @@
     },
     {
         '_id': '42',
-        'hours': '72',
+        'hours': 72,
         'name': 'Laboratório de Eletrônica',
         'professors': [],
         'description': '',
@@ -388,7 +388,7 @@
     },
     {
         '_id': '43',
-        'hours': '72',
+        'hours': 72,
         'name': 'Engenharia de Segurança do Trabalho',
         'professors': [],
         'description': '',
@@ -397,7 +397,7 @@
     },
     {
         '_id': '44',
-        'hours': '36',
+        'hours': 36,
         'name': 'Projeto Interativo VI',
         'professors': [],
         'description': '',
@@ -406,7 +406,7 @@
     },
     {
         '_id': '45',
-        'hours': '36',
+        'hours': 36,
         'name': 'Materiais Elétricos e Processos',
         'professors': [],
         'description': '',
@@ -415,7 +415,7 @@
     },
     {
         '_id': '46',
-        'hours': '36',
+        'hours': 36,
         'name': 'Sistemas Móveis e Distribuídos',
         'professors': [],
         'description': '',
@@ -424,7 +424,7 @@
     },
     {
         '_id': '47',
-        'hours': '72',
+        'hours': 72,
         'name': 'Teoria da Computação e Compiladores',
         'professors': [],
         'description': '',
@@ -433,7 +433,7 @@
     },
     {
         '_id': '48',
-        'hours': '36',
+        'hours': 36,
         'name': 'Projeto Interativo VII',
         'professors': [],
         'description': '',
@@ -442,7 +442,7 @@
     },
     {
         '_id': '49',
-        'hours': '72',
+        'hours': 72,
         'name': 'Laboratório de Redes de Computadores',
         'professors': [],
         'description': '',
@@ -451,7 +451,7 @@
     },
     {
         '_id': '50',
-        'hours': '72',
+        'hours': 72,
         'name': 'Redes de Computadores',
         'professors': [],
         'description': '',
@@ -460,7 +460,7 @@
     },
     {
         '_id': '51',
-        'hours': '72',
+        'hours': 72,
         'name': 'Banco de Dados',
         'professors': [],
         'description': '',
@@ -469,7 +469,7 @@
     },
     {
         '_id': '52',
-        'hours': '72',
+        'hours': 72,
         'name': 'Sistemas e Sinais',
         'professors': [],
         'description': '',
@@ -478,7 +478,7 @@
     },
     {
         '_id': '53',
-        'hours': '72',
+        'hours': 72,
         'name': 'Engenharia de Controle',
         'professors': [],
         'description': '',
@@ -487,7 +487,7 @@
     },
     {
         '_id': '54',
-        'hours': '72',
+        'hours': 72,
         'name': 'Fundamentos de Telecomunicações',
         'professors': [],
         'description': '',
@@ -496,7 +496,7 @@
     },
     {
         '_id': '55',
-        'hours': '72',
+        'hours': 72,
         'name': 'Engenharia de Software I',
         'professors': [],
         'description': '',
@@ -505,7 +505,7 @@
     },
     {
         '_id': '56',
-        'hours': '72',
+        'hours': 72,
         'name': 'Gestão de Projetos',
         'professors': [],
         'description': '',
@@ -514,7 +514,7 @@
     },
     {
         '_id': '57',
-        'hours': '36',
+        'hours': 36,
         'name': 'Projeto Interativo VIII',
         'professors': [],
         'description': '',
@@ -523,7 +523,7 @@
     },
     {
         '_id': '58',
-        'hours': '72',
+        'hours': 72,
         'name': 'Sistemas Operacionais',
         'professors': [],
         'description': '',
@@ -532,7 +532,7 @@
     },
     {
         '_id': '59',
-        'hours': '36',
+        'hours': 36,
         'name': 'Engenharia de Software II',
         'professors': [],
         'description': '',
@@ -541,7 +541,7 @@
     },
     {
         '_id': '60',
-        'hours': '36',
+        'hours': 36,
         'name': 'Gestão da Inovação',
         'professors': [],
         'description': '',
@@ -550,7 +550,7 @@
     },
     {
         '_id': '61',
-        'hours': '36',
+        'hours': 36,
         'name': 'Eletiva I',
         'professors': [],
         'description': '',
@@ -559,7 +559,7 @@
     },
     {
         '_id': '62',
-        'hours': '36',
+        'hours': 36,
         'name': 'Avaliação de Desempenho de Sistemas Computacionais',
         'professors': [],
         'description': '',
@@ -568,7 +568,7 @@
     },
     {
         '_id': '63',
-        'hours': '36',
+        'hours': 36,
         'name': 'Trabalho de Conclusão de Curso I',
         'professors': [],
         'description': '',
@@ -577,7 +577,7 @@
     },
     {
         '_id': '64',
-        'hours': '72',
+        'hours': 72,
         'name': 'Laboratório de Microprocessadores',
         'professors': [],
         'description': '',
@@ -586,7 +586,7 @@
     },
     {
         '_id': '65',
-        'hours': '72',
+        'hours': 72,
         'name': 'Sistemas de Automação',
         'professors': [],
         'description': '',
@@ -595,7 +595,7 @@
     },
     {
         '_id': '66',
-        'hours': '36',
+        'hours': 36,
         'name': 'Introdução a Economia',
         'professors': [],
         'description': '',
@@ -604,7 +604,7 @@
     },
     {
         '_id': '67',
-        'hours': '36',
+        'hours': 36,
         'name': 'Introdução ao Direito',
         'professors': [],
         'description': '',
@@ -613,7 +613,7 @@
     },
     {
         '_id': '68',
-        'hours': '36',
+        'hours': 36,
         'name': 'Trabalho de Conclusão de Curso II',
         'professors': [],
         'description': '',
@@ -622,7 +622,7 @@
     },
     {
         '_id': '69',
-        'hours': '36',
+        'hours': 36,
         'name': 'Eletiva II',
         'professors': [],
         'description': '',
@@ -631,7 +631,7 @@
     },
     {
         '_id': '70',
-        'hours': '36',
+        'hours': 36,
         'name': 'Administração',
         'professors': [],
         'description': '',
@@ -640,7 +640,7 @@
     },
     {
         '_id': '71',
-        'hours': '108',
+        'hours': 108,
         'name': 'Atividades Complementares',
         'professors': [],
         'description': '',
@@ -649,7 +649,7 @@
     },
     {
         '_id': '72',
-        'hours': '160',
+        'hours': 160,
         'name': 'Estágio Obrigatório',
         'professors': [],
         'description': '',
