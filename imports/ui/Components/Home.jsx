@@ -1,4 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { Meteor } from 'meteor/meteor';
+
+//Components
+import AccountsUIWrapper from '../AccountsUIWrapper.jsx';
 
 //Material-ui
 import SelectField from 'material-ui/SelectField';
@@ -25,18 +29,19 @@ class Home extends Component {
     let professors = this.props.professors;
     let coordinator;
     professors.map((professor, i) => {
-      if(professor._id == course.coordinator) coordinator = professor;
+      if (professor._id == course.coordinator) coordinator = professor;
     })
-    this.setState({ value: index, course: course, showCard: true, coordinator: coordinator});
+    this.setState({ value: index, course: course, showCard: true, coordinator: coordinator });
     this.props.setCourse(course)
   }
 
   render() {
     let courses = this.props.graduationCourses;
-    
+
     console.log('this.props no Home = ', this.props);
     return (
-      <div style={{ backgroundColor: '#0E6094', boxShadow: '1px 1px 1px #888888' }}>
+      <div style={{ boxShadow: '1px 1px 1px #888888' }}>
+        <AccountsUIWrapper />
         {this.props.loading ?
           <CircularProgress />
           :
@@ -46,35 +51,41 @@ class Home extends Component {
                 <Paper zDepth={1} rounded={false}>
                   <img src="http://www.go.senac.br/portal/images/logo211x124.jpg" alt="Smiley face" />
                   <h1 style={{ marginTop: '5%', marginBottom: '5%' }}>Calculadora de Graduação</h1>
+                  <div style={{marginTop: '1%', marginBottom: '1%'}}>
+                    Logue para continuar
+                  </div>
                   <RaisedButton
                     label="Sobre"
                     labelPosition="before"
                     containerElement="label"
-                    style={{ marginBottom: '3.6%', marginRight: '10%' }}
-                    buttonStyle={{ backgroundColor: '#ff7f00' }}
+                    style={{ marginBottom: '1.5%', marginRight: '10%' }}
+                    buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
                     labelColor='white'
                     labelStyle={{ fontWeight: 'bold' }}
                     onClick={() => this.props.history.push('/About/')}
+                    disabled={!this.props.currentUser}
                   />
                   <RaisedButton
                     label="Ranking"
                     labelPosition="before"
                     containerElement="label"
-                    style={{ marginBottom: '3.6%'}}
-                    buttonStyle={{ backgroundColor: '#ff7f00' }}
+                    style={{ marginBottom: '1.5%' }}
+                    buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
                     labelColor='white'
                     labelStyle={{ fontWeight: 'bold' }}
                     onClick={() => this.props.history.push('/Ranking/')}
+                    disabled={!this.props.currentUser}
                   />
                   <RaisedButton
                     label="Começar"
                     labelPosition="before"
                     containerElement="label"
-                    style={{ marginBottom: '3.6%', marginLeft: '10%' }}
-                    buttonStyle={{ backgroundColor: '#ff7f00' }}
+                    style={{ marginBottom: '1.5%', marginLeft: '10%' }}
+                    buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
                     labelColor='white'
                     labelStyle={{ fontWeight: 'bold' }}
-                    onClick={() => this.setState({ start: !this.state.start })}
+                    onClick={() => this.props.currentUser ? this.setState({ start: !this.state.start }) : ''}
+                    disabled={!this.props.currentUser}
                   />
                 </Paper>
               </div>
@@ -83,8 +94,8 @@ class Home extends Component {
                 <SelectField
                   floatingLabelText="Curso"
                   value={this.state.value}
-                  labelStyle={{ color: 'white'}}
-                  menuItemStyle={{ color: 'white'}}
+                  labelStyle={{ color: 'white' }}
+                  menuItemStyle={{ color: 'white' }}
                   listStyle={{ color: 'white', backgroundColor: '#ff7f00' }}
                   style={{ textAlign: 'left' }}
                 >
@@ -110,22 +121,26 @@ class Home extends Component {
             </CardText>
             <CardActions>
               <RaisedButton
-                label="Tempo restante de curso"
+                label="Calcular progresso"
                 labelPosition="before"
                 containerElement="label"
-                buttonStyle={{ backgroundColor: '#ff7f00' }}
-                labelColor='white'
+                buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
+                labelColor={'white'}
                 labelStyle={{ fontWeight: 'bold' }}
-                onClick={() => this.props.history.push('/CalculateTime/')}
+                onClick={() => this.props.currentUser ? this.props.history.push('/CalculateTime/') : ''}
+                disabled={!this.props.currentUser}
               />
               <RaisedButton
                 label='Matérias do curso'
                 labelPosition="before"
                 containerElement="label"
-                buttonStyle={{ backgroundColor: '#ff7f00' }}
+                backgroundColor={'#ff7f00'}
                 labelColor='white'
+                disabledBackgroundColor={'gray'}
+                disabledLabelColor={'black'}
                 labelStyle={{ fontWeight: 'bold' }}
-                onClick={() => this.props.history.push('/ListClasses/')}
+                onClick={() => this.props.currentUser ? this.props.history.push('/ListClasses/') : ''}
+                disabled={!this.props.currentUser}
               />
             </CardActions>
           </Card>

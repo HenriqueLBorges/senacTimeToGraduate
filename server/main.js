@@ -40,3 +40,13 @@ Meteor.methods({
 Meteor.startup(() => {
   // code to run on server at startup
 });
+
+ServiceConfiguration.configurations.remove({
+    service: "facebook"
+});
+
+ServiceConfiguration.configurations.insert({
+    service: "facebook",
+    appId: '819922718188533',
+    secret: 'cdee391b96d5b222a75339ea8ff62dd7'
+});

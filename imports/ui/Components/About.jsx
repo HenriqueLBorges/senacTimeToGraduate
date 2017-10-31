@@ -10,7 +10,10 @@ class About extends Component {
     }
     render() {
         return (
-            <div>Aplicação feita com Meteor e React 2017.</div>
+            <div>
+                <p>Aplicação feita com Meteor e React por Henrique Borges.
+                <br/><a href="https://github.com/HenriqueLBorges">Github profile</a></p>
+            </div>
         );
     }
 }

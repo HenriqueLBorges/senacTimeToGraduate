@@ -80,7 +80,7 @@ class ListClasses extends Component {
 
         let item = {
             course: course,
-            name: 'Henrique Borges',
+            name: this.props.currentUser.profile.name,
             classes: classes,
             remainingClasses: remaingClassesAux,
             remainingHours: remaingHours,
