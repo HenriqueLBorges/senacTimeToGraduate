@@ -34,7 +34,7 @@ class RankingList extends Component {
                             <TableRow>
                                 <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Alunos</TableHeaderColumn>
                                 <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Matérias restantes</TableHeaderColumn>
-                                <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Horas restantes</TableHeaderColumn>
+                                <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Porcentagem de conclusão do curso</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -42,7 +42,7 @@ class RankingList extends Component {
                                 return <TableRow rowNumber={i + 1}>
                                     <TableRowColumn>{student.name}</TableRowColumn>
                                     <TableRowColumn>{student.remainingClasses.length} matérias</TableRowColumn>
-                                    <TableRowColumn>{student.remainingHours} horas</TableRowColumn>
+                                    <TableRowColumn>{student.percentage}% concluído</TableRowColumn>
                                 </TableRow>
                             })}
                         </TableBody>

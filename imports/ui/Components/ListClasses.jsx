@@ -5,7 +5,6 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Classes } from '../../api/classes.js';
 
 //Material-ui
-import Paper from 'material-ui/Paper';
 import LinearProgress from 'material-ui/LinearProgress';
 import Dialog from 'material-ui/Dialog';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
@@ -84,7 +83,8 @@ class ListClasses extends Component {
             name: 'Henrique Borges',
             classes: classes,
             remainingClasses: remaingClassesAux,
-            remainingHours: remaingHours
+            remainingHours: remaingHours,
+            percentage: percentage.toFixed(1)
         }
 
         Meteor.call('addNewRankingItem', item);
@@ -106,51 +106,6 @@ class ListClasses extends Component {
                     <CircularProgress />
                     :
                     <div style={{ maxHeight: "100%" }}>
-                        <div style={{ maxHeight: "100%", height: "100px" }}>
-                            <Dialog
-                                title="Resultados"
-                                modal={true}
-                                open={this.state.openDialog}
-                                contentStyle={{ height: "100%", maxHeight: "95%", width: "100%", maxWidth: "none" }}
-                                onRequestClose={this.handleDialog}
-                            >
-                                <div style={{ height: '100%', width: '100%', margin: '20', textAlign: 'center', display: 'inline-block', }} zDepth={1}>
-                                    
-                                    <LinearProgress style={{marginTop: "2%"}} mode="determinate" color={'#0E6094'} value={this.state.percentage} />
-                                    
-                                    <ul style={{ marginTop: "3%", textAlign: "left" }}>
-                                        <li>Você passou em {this.state.classes.length} matéria(s) e ainda faltam {this.state.remaingClasses.length} matéria(s).</li>
-                                        <li>Você concluiu {this.state.semesters} semestre(s) de um total de {this.props.course.semesters} semestre(s).</li>
-                                        <li>Restam {this.state.remaingHours} horas para você concluir o curso.</li>
-                                    </ul>
-                                    "Keep moving foward! That's how winning is done!" - Rocky Balboa.
-
-                                    <div style={{ marginTop: "3%" }}>
-                                        <RaisedButton
-                                            label="Ranking do curso"
-                                            labelPosition="before"
-                                            containerElement="label"
-                                            buttonStyle={{ backgroundColor: '#ff7f00' }}
-                                            labelColor='white'
-                                            labelStyle={{ fontWeight: 'bold' }}
-                                            style={{ float: 'right' }}
-                                            onClick={() => this.props.history.push('/Ranking')}
-                                        />,
-                                    <RaisedButton
-                                            label="Voltar"
-                                            labelPosition="before"
-                                            containerElement="label"
-                                            buttonStyle={{ backgroundColor: '#ff7f00' }}
-                                            labelColor='white'
-                                            labelStyle={{ fontWeight: 'bold' }}
-                                            style={{ float: 'left' }}
-                                            onClick={() => this.props.history.push('/')}
-                                        />
-                                    </div>
-                                </div>
-
-                            </Dialog>
-                        </div>
                         {this.props.calculate ?
                             <Table multiSelectable={true} onCellClick={(rowNumber) => this.addNewItem(rowNumber)}>
                                 <TableHeader style={{ backgroundColor: '#0E6094' }}>
@@ -208,6 +163,49 @@ class ListClasses extends Component {
                             style={{ float: 'left', marginTop: '5%' }}
                             onClick={() => this.props.history.push('/')}
                         />
+                        <Dialog
+                            title="Resultados"
+                            modal={true}
+                            open={this.state.openDialog}
+                            contentStyle={{ height: "100%", maxHeight: "95%", width: "100%", maxWidth: "none" }}
+                            onRequestClose={this.handleDialog}
+                        >
+                            <div style={{ height: '100%', width: '100%', margin: '20', textAlign: 'center', display: 'inline-block', }} zDepth={1}>
+                                <div style={{textAlign: "center"}}>
+                                    {(this.state.percentage).toFixed(1)}% concluído
+                                    <LinearProgress style={{ marginTop: "2%" }} mode="determinate" color={'#0E6094'} value={this.state.percentage} />
+                                </div>
+                                <ul style={{ marginTop: "3%", textAlign: "left" }}>
+                                    <li>Você passou em {this.state.classes.length} matéria(s) e ainda faltam {this.state.remaingClasses.length} matéria(s).</li>
+                                    <li>Você concluiu {this.state.semesters} semestre(s) de um total de {this.props.course.semesters} semestre(s).</li>
+                                    <li>Restam {this.state.remaingHours} horas para você concluir o curso.</li>
+                                </ul>
+                                "Keep moving foward! That's how winning is done!" - Rocky Balboa.
+
+                                    <div style={{ marginTop: "3%" }}>
+                                    <RaisedButton
+                                        label="Ranking do curso"
+                                        labelPosition="before"
+                                        containerElement="label"
+                                        buttonStyle={{ backgroundColor: '#ff7f00' }}
+                                        labelColor='white'
+                                        labelStyle={{ fontWeight: 'bold' }}
+                                        style={{ float: 'right' }}
+                                        onClick={() => this.props.history.push('/Ranking')}
+                                    />,
+                                    <RaisedButton
+                                        label="Voltar"
+                                        labelPosition="before"
+                                        containerElement="label"
+                                        buttonStyle={{ backgroundColor: '#ff7f00' }}
+                                        labelColor='white'
+                                        labelStyle={{ fontWeight: 'bold' }}
+                                        style={{ float: 'left' }}
+                                        onClick={() => this.props.history.push('/')}
+                                    />
+                                </div>
+                            </div>
+                        </Dialog>
                     </div>
                 }
             </div>

@@ -31,7 +31,8 @@ Meteor.methods({
       'name': item.name,
       'classes': item.classes,
       'remainingClasses': item.remainingClasses,
-      'remainingHours': item.remainingHours
+      'remainingHours': item.remainingHours,
+      'percentage': item.percentage
     });
   }
 });
