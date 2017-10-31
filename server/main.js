@@ -26,13 +26,18 @@ Meteor.publish('ranking', function (id) {
 Meteor.methods({
   'addNewRankingItem': function (item) {
 
+    let date = new Date();
+    date = moment(date).format('DD-MM-YYYY HH:mm:ss');
+    console.log('date = ', date);
+    
     Ranking.insert({
       'course': item.course,
       'name': item.name,
       'classes': item.classes,
       'remainingClasses': item.remainingClasses,
       'remainingHours': item.remainingHours,
-      'percentage': item.percentage
+      'percentage': item.percentage,
+      'date': date
     });
   }
 });
@@ -42,11 +47,11 @@ Meteor.startup(() => {
 });
 
 ServiceConfiguration.configurations.remove({
-    service: "facebook"
+  service: "facebook"
 });
 
 ServiceConfiguration.configurations.insert({
-    service: "facebook",
-    appId: '819922718188533',
-    secret: 'cdee391b96d5b222a75339ea8ff62dd7'
+  service: "facebook",
+  appId: '819922718188533',
+  secret: 'cdee391b96d5b222a75339ea8ff62dd7'
 });

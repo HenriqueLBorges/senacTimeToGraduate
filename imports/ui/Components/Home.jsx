@@ -35,13 +35,33 @@ class Home extends Component {
     this.props.setCourse(course)
   }
 
+  login() {
+    const loginStyle = (Meteor.isCordova ? 'redirect' : 'popup');
+
+    Meteor.loginWithFacebook({
+      loginStyle: loginStyle,
+      requestPermissions: []
+    }, function (e) {
+
+      if (e) console.log('Error at loginWithFacebook', e);
+    })
+  }
+
+  logout() {
+    let self = this;
+    Meteor.logout(() => {
+      console.log(self.props.router);
+      self.props.history.push('/');
+    });
+  }
+
   render() {
     let courses = this.props.graduationCourses;
 
     console.log('this.props no Home = ', this.props);
     return (
       <div style={{ boxShadow: '1px 1px 1px #888888' }}>
-        <AccountsUIWrapper />
+
         {this.props.loading ?
           <CircularProgress />
           :
@@ -51,9 +71,6 @@ class Home extends Component {
                 <Paper zDepth={1} rounded={false}>
                   <img src="http://www.go.senac.br/portal/images/logo211x124.jpg" alt="Smiley face" />
                   <h1 style={{ marginTop: '5%', marginBottom: '5%' }}>Calculadora de Graduação</h1>
-                  <div style={{marginTop: '1%', marginBottom: '1%'}}>
-                    Logue para continuar
-                  </div>
                   <RaisedButton
                     label="Sobre"
                     labelPosition="before"
@@ -66,15 +83,14 @@ class Home extends Component {
                     disabled={!this.props.currentUser}
                   />
                   <RaisedButton
-                    label="Ranking"
+                    label={this.props.currentUser ? "Logout" : "Entrar com Facebook"}
                     labelPosition="before"
                     containerElement="label"
                     style={{ marginBottom: '1.5%' }}
-                    buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
+                    buttonStyle={{ backgroundColor: '#3b5998' }}
                     labelColor='white'
                     labelStyle={{ fontWeight: 'bold' }}
-                    onClick={() => this.props.history.push('/Ranking/')}
-                    disabled={!this.props.currentUser}
+                    onClick={this.props.currentUser ? () => this.logout() : () => this.login()}
                   />
                   <RaisedButton
                     label="Começar"
@@ -128,6 +144,17 @@ class Home extends Component {
                 labelColor={'white'}
                 labelStyle={{ fontWeight: 'bold' }}
                 onClick={() => this.props.currentUser ? this.props.history.push('/CalculateTime/') : ''}
+                disabled={!this.props.currentUser}
+              />
+              <RaisedButton
+                label="Ranking"
+                labelPosition="before"
+                containerElement="label"
+                style={{ marginBottom: '1.5%' }}
+                buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
+                labelColor='white'
+                labelStyle={{ fontWeight: 'bold' }}
+                onClick={() => this.props.history.push('/Ranking/')}
                 disabled={!this.props.currentUser}
               />
               <RaisedButton

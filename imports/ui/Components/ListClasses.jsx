@@ -116,7 +116,7 @@ class ListClasses extends Component {
                                 </TableHeader>
                                 <TableBody>
                                     {classes.map((item, i) => {
-                                        return <TableRow>
+                                        return <TableRow key={i} selected={this.state.classesSelected.indexOf(i) !== -1}>
                                             <TableRowColumn style={{ title: item.description }}>{item.name}</TableRowColumn>
                                             <TableRowColumn>{item.semester}º semestre</TableRowColumn>
                                         </TableRow>
