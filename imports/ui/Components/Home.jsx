@@ -50,15 +50,12 @@ class Home extends Component {
   logout() {
     let self = this;
     Meteor.logout(() => {
-      console.log(self.props.router);
       self.props.history.push('/');
     });
   }
 
   render() {
     let courses = this.props.graduationCourses;
-
-    console.log('this.props no Home = ', this.props);
     return (
       <div style={{ boxShadow: '1px 1px 1px #888888' }}>
 
@@ -76,10 +73,11 @@ class Home extends Component {
                     labelPosition="before"
                     containerElement="label"
                     style={{ marginBottom: '1.5%', marginRight: '10%' }}
-                    buttonStyle={{ backgroundColor: '#ff7f00' }}
+                    buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
                     labelColor='white'
                     labelStyle={{ fontWeight: 'bold' }}
-                    onClick={() => this.props.history.push('/About/')}
+                    onClick={() => this.props.currentUser ? this.props.history.push('/About/') : ''}
+                    disabled={!this.props.currentUser}
                   />
                   <RaisedButton
                     label={this.props.currentUser ? "Logout" : "Entrar com Facebook"}

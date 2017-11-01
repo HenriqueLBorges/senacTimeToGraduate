@@ -28,7 +28,6 @@ Meteor.methods({
 
     let date = new Date();
     date = moment(date).format('DD-MM-YYYY HH:mm:ss');
-    console.log('date = ', date);
     
     Ranking.insert({
       'course': item.course,
