@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 
 //Components
 import AccountsUIWrapper from '../AccountsUIWrapper.jsx';
+import About from './About.jsx';
 
 //Material-ui
 import SelectField from 'material-ui/SelectField';
@@ -20,7 +21,7 @@ class Home extends Component {
       value: -1,
       showCard: false,
       course: {},
-      teste: true,
+      about: false,
       coordinator: {}
     }
   }
@@ -42,7 +43,6 @@ class Home extends Component {
       loginStyle: loginStyle,
       requestPermissions: []
     }, function (e) {
-
       if (e) console.log('Error at loginWithFacebook', e);
     })
   }
@@ -54,71 +54,76 @@ class Home extends Component {
     });
   }
 
+  back() {
+    this.setState({ about: !this.state.about, start: !this.state.start });
+  }
+
   render() {
     let courses = this.props.graduationCourses;
     return (
       <div style={{ boxShadow: '1px 1px 1px #888888' }}>
-
         {this.props.loading ?
           <CircularProgress />
           :
           <div>
             {!this.state.start ?
               <div style={{ textAlign: 'center' }}>
-                <Paper zDepth={1} rounded={false}>
-                  <img src="http://www.go.senac.br/portal/images/logo211x124.jpg" alt="Smiley face" />
-                  <h1 style={{ marginTop: '5%', marginBottom: '5%' }}>Calculadora de Graduação</h1>
-                  <RaisedButton
-                    label="Sobre"
-                    labelPosition="before"
-                    containerElement="label"
-                    style={{ marginBottom: '1.5%', marginRight: '10%' }}
-                    buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
-                    labelColor='white'
-                    labelStyle={{ fontWeight: 'bold' }}
-                    onClick={() => this.props.currentUser ? this.props.history.push('/About/') : ''}
-                    disabled={!this.props.currentUser}
-                  />
-                  <RaisedButton
-                    label={this.props.currentUser ? "Logout" : "Entrar com Facebook"}
-                    labelPosition="before"
-                    containerElement="label"
-                    style={{ marginBottom: '1.5%' }}
-                    buttonStyle={{ backgroundColor: '#3b5998' }}
-                    labelColor='white'
-                    labelStyle={{ fontWeight: 'bold' }}
-                    onClick={this.props.currentUser ? () => this.logout() : () => this.login()}
-                  />
-                  <RaisedButton
-                    label="Começar"
-                    labelPosition="before"
-                    containerElement="label"
-                    style={{ marginBottom: '1.5%', marginLeft: '10%' }}
-                    buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
-                    labelColor='white'
-                    labelStyle={{ fontWeight: 'bold' }}
-                    onClick={() => this.props.currentUser ? this.setState({ start: !this.state.start }) : ''}
-                    disabled={!this.props.currentUser}
-                  />
-                </Paper>
+                <img src="http://www.go.senac.br/portal/images/logo211x124.jpg" alt="Smiley face" />
+                <h1 style={{ marginTop: '5%', marginBottom: '5%' }}>Calculadora de Graduação</h1>
+                <RaisedButton
+                  label="Sobre"
+                  labelPosition="before"
+                  containerElement="label"
+                  style={{ marginRight: '10%', position: 'relative', bottom: '0' }}
+                  buttonStyle={{ backgroundColor: '#ff7f00' }}
+                  labelColor='white'
+                  labelStyle={{ fontWeight: 'bold' }}
+                  onClick={() => this.setState({ start: !this.state.start, about: !this.state.about })}
+                />
+                <RaisedButton
+                  label={this.props.currentUser ? "Logout" : "Entrar com o Facebook"}
+                  labelPosition="before"
+                  containerElement="label"
+                  style={{ position: 'relative', bottom: '0' }}
+                  buttonStyle={{ backgroundColor: '#3b5998' }}
+                  labelColor='white'
+                  labelStyle={{ fontWeight: 'bold' }}
+                  onClick={this.props.currentUser ? () => this.logout() : () => this.login()}
+                />
+                <RaisedButton
+                  label="Começar"
+                  labelPosition="before"
+                  containerElement="label"
+                  style={{ marginLeft: '10%', position: 'relative', bottom: '0' }}
+                  buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
+                  labelColor='white'
+                  labelStyle={{ fontWeight: 'bold' }}
+                  onClick={() => this.props.currentUser ? this.setState({ start: !this.state.start }) : ''}
+                  disabled={!this.props.currentUser}
+                />
               </div>
               :
-              <div style={{ textAlign: 'center' }}>
-                <SelectField
-                  floatingLabelText="Curso"
-                  value={this.state.value}
-                  labelStyle={{ color: 'white' }}
-                  menuItemStyle={{ color: 'white' }}
-                  listStyle={{ color: 'white', backgroundColor: '#ff7f00' }}
-                  style={{ textAlign: 'left' }}
-                >
-                  {courses.map((course, i) => {
-                    return <MenuItem value={i} key={i} primaryText={course.name} onClick={() => this.handleChange(i, course)} />
-                  })}
-                </SelectField>
+              <div>
+                {this.state.about ?
+                  <About back={this.back.bind(this)} />
+                  :
+                  <div style={{ textAlign: 'center' }}>
+                    <SelectField
+                      floatingLabelText="Curso"
+                      value={this.state.value}
+                      labelStyle={{ color: 'white' }}
+                      menuItemStyle={{ color: 'white' }}
+                      listStyle={{ color: 'white', backgroundColor: '#ff7f00' }}
+                      style={{ textAlign: 'left' }}
+                    >
+                      {courses.map((course, i) => {
+                        return <MenuItem value={i} key={i} primaryText={course.name} onClick={() => this.handleChange(i, course)} />
+                      })}
+                    </SelectField>
+                  </div>
+                }
               </div>
             }
-
           </div>
         }
         {this.state.showCard ?

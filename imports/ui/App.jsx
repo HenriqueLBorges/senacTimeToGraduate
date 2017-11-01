@@ -72,14 +72,6 @@ class App extends Component {
                                             {...props} />
                                     }
                                 />
-                                <Route path='/About'
-                                    render={(props) =>
-                                        <About
-                                            graduationCourses={this.props.graduationCourses}
-                                            loading={this.props.loading}
-                                            {...props} />
-                                    }
-                                />
                                 <Route path='/ListClasses'
                                     render={(props) =>
                                         <ListClasses

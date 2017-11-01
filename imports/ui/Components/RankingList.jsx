@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 
 //Collections
 import { Ranking } from '../../api/ranking.js';
@@ -29,8 +30,8 @@ class RankingList extends Component {
                 {this.props.loading ?
                     <CircularProgress />
                     :
-                    <Table selectable={false}>
-                        <TableHeader style={{ backgroundColor: '#0E6094' }}>
+                    <Table selectable={false} adjustForCheckbox={false}>
+                        <TableHeader displaySelectAll={false} style={{ backgroundColor: '#0E6094' }}>
                             <TableRow>
                                 <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Alunos</TableHeaderColumn>
                                 <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Matérias restantes</TableHeaderColumn>
@@ -38,7 +39,7 @@ class RankingList extends Component {
                                 <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Data do teste</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
-                        <TableBody>
+                        <TableBody stripedRows={true} displayRowCheckbox={false}>
                             {ranking.map((student, i) => {
                                 return <TableRow rowNumber={i + 1}>
                                     <TableRowColumn>{student.name}</TableRowColumn>
@@ -56,10 +57,17 @@ class RankingList extends Component {
 }
 
 export default createContainer((props) => {
+    let handleUsers = Meteor.subscribe("users");
     let handleRanking = Meteor.subscribe("ranking", props.course._id);
     let ranking;
+    let users;
     let handleGraduationCourses = Meteor.subscribe("graduation_courses");
     let graduationCourse;
+
+    /*if(handleUsers.ready()){
+        users = Meteor.users.find({});
+    }
+    console.log('users = ', users);*/
 
     if (handleRanking.ready()) {
         ranking = Ranking.find({}).fetch();

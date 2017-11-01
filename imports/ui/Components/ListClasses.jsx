@@ -80,7 +80,7 @@ class ListClasses extends Component {
 
         let item = {
             course: course,
-            name: this.props.currentUser.profile.name,
+            userID: this.props.currentUser._id,
             classes: classes,
             remainingClasses: remaingClassesAux,
             remainingHours: remaingHours,
@@ -108,7 +108,7 @@ class ListClasses extends Component {
                     <div style={{ maxHeight: "100%" }}>
                         {this.props.calculate ?
                             <Table multiSelectable={true} onCellClick={(rowNumber) => this.addNewItem(rowNumber)}>
-                                <TableHeader style={{ backgroundColor: '#0E6094' }}>
+                                <TableHeader displaySelectAll={false} style={{ backgroundColor: '#0E6094' }}>
                                     <TableRow>
                                         <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Disciplina</TableHeaderColumn>
                                         <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Semestre</TableHeaderColumn>
@@ -124,18 +124,18 @@ class ListClasses extends Component {
                                 </TableBody>
                             </Table>
                             :
-                            <Table selectable={false}>
-                                <TableHeader style={{ backgroundColor: '#0E6094' }}>
+                            <Table selectable={false} adjustForCheckbox={false}>
+                                <TableHeader displaySelectAll={false} style={{ backgroundColor: '#0E6094' }}>
                                     <TableRow>
                                         <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Disciplina</TableHeaderColumn>
                                         <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Carga horária</TableHeaderColumn>
                                         <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Semestre</TableHeaderColumn>
                                     </TableRow>
                                 </TableHeader>
-                                <TableBody>
+                                <TableBody stripedRows={true} displayRowCheckbox={false}>
                                     {classes.map((item, i) => {
                                         return <TableRow>
-                                            <TableRowColumn style={{ title: item.description }}>{item.name}</TableRowColumn>
+                                            <TableRowColumn tooltip={item.description} style={{ title: item.description }}>{item.name}</TableRowColumn>
                                             <TableRowColumn>{item.hours} horas</TableRowColumn>
                                             <TableRowColumn>{item.semester}º semestre</TableRowColumn>
                                         </TableRow>
@@ -143,16 +143,20 @@ class ListClasses extends Component {
                                 </TableBody>
                             </Table>
                         }
-                        <RaisedButton
-                            label="Calcular"
-                            labelPosition="before"
-                            containerElement="label"
-                            buttonStyle={{ backgroundColor: '#ff7f00' }}
-                            labelColor='white'
-                            labelStyle={{ fontWeight: 'bold' }}
-                            style={{ float: 'right', marginTop: '5%' }}
-                            onClick={() => this.calculate()}
-                        />
+                        {this.state.calculate ?
+                            <RaisedButton
+                                label="Calcular"
+                                labelPosition="before"
+                                containerElement="label"
+                                buttonStyle={{ backgroundColor: '#ff7f00' }}
+                                labelColor='white'
+                                labelStyle={{ fontWeight: 'bold' }}
+                                style={{ float: 'right', marginTop: '5%' }}
+                                onClick={() => this.calculate()}
+                            />
+                            :
+                            ''
+                        }
                         <RaisedButton
                             label='Voltar'
                             labelPosition="before"
@@ -171,7 +175,7 @@ class ListClasses extends Component {
                             onRequestClose={this.handleDialog}
                         >
                             <div style={{ height: '100%', width: '100%', margin: '20', textAlign: 'center', display: 'inline-block', }} zDepth={1}>
-                                <div style={{textAlign: "center"}}>
+                                <div style={{ textAlign: "center" }}>
                                     {(this.state.percentage).toFixed(1)}% concluído
                                     <LinearProgress style={{ marginTop: "2%" }} mode="determinate" color={'#0E6094'} value={this.state.percentage} />
                                 </div>
