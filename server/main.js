@@ -16,7 +16,7 @@ Meteor.publish('classes', function (id) {
 });
 
 Meteor.publish('professors', function () {
-  return Classes.find({});
+  return Professors.find({});
 });
 
 Meteor.publish('ranking', function (id) {
