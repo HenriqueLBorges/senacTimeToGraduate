@@ -86,7 +86,7 @@ class ListClasses extends Component {
             remainingHours: remaingHours,
             percentage: percentage.toFixed(1)
         }
-
+        
         Meteor.call('addNewRankingItem', item);
 
         this.setState({ classes: classes, remaingClasses: remaingClasses, remaingHours: remaingHours, semesters: finishedSemesters.length, totalHours: totalHours, percentage: percentage }, () => {
@@ -143,7 +143,7 @@ class ListClasses extends Component {
                                 </TableBody>
                             </Table>
                         }
-                        {this.state.calculate ?
+                        {this.props.calculate ?
                             <RaisedButton
                                 label="Calcular"
                                 labelPosition="before"

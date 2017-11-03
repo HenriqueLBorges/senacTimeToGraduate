@@ -2,10 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 
-//Collections
-import { Ranking } from '../../api/ranking.js';
-import { GraduationCourses } from '../../api/graduation_courses.js';
-
 //Material-ui
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -20,14 +16,36 @@ class RankingList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            ranking: [],
+            loading: true
         }
     }
+
+    componentDidMount() {
+        let self = this;
+        Meteor.call("getCourseRanking", this.props.course._id, function (error, success) {
+            if (success) {
+                self.setState({ ranking: success, loading: false })
+            }
+            else console.log("Error retrieving data");
+        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        let self = this;
+        Meteor.call("getCourseRanking", nextProps.course._id, function (error, success) {
+            if (success) {
+                self.setState({ ranking: success, loading: false })
+            }
+            else console.log("Error retrieving data");
+        });
+    }
+
     render() {
-        let ranking = this.props.ranking;
+        let ranking = this.state.ranking;
         return (
             <div>
-                {this.props.loading ?
+                {this.state.loading ?
                     <CircularProgress />
                     :
                     <Table selectable={false} adjustForCheckbox={false}>
@@ -42,46 +60,27 @@ class RankingList extends Component {
                         <TableBody stripedRows={true} displayRowCheckbox={false}>
                             {ranking.map((student, i) => {
                                 return <TableRow rowNumber={i + 1}>
-                                    <TableRowColumn>{student.name}</TableRowColumn>
-                                    <TableRowColumn>{student.remainingClasses.length} matérias</TableRowColumn>
-                                    <TableRowColumn>{student.percentage}% concluído</TableRowColumn>
-                                    <TableRowColumn>{student.date}</TableRowColumn>
+                                    <TableRowColumn>{student.user.profile.name}</TableRowColumn>
+                                    <TableRowColumn>{student.record.remainingClasses.length} matérias</TableRowColumn>
+                                    <TableRowColumn>{student.record.percentage}% concluído</TableRowColumn>
+                                    <TableRowColumn>{student.record.date}</TableRowColumn>
                                 </TableRow>
                             })}
                         </TableBody>
                     </Table>
                 }
+                <RaisedButton
+                    label='Voltar'
+                    labelPosition="before"
+                    containerElement="label"
+                    buttonStyle={{ backgroundColor: '#ff7f00' }}
+                    labelColor='white'
+                    labelStyle={{ fontWeight: 'bold' }}
+                    style={{ float: 'left', marginTop: '5%' }}
+                    onClick={() => this.props.history.push('/')}
+                />
             </div>
         );
     }
 }
-
-export default createContainer((props) => {
-    let handleUsers = Meteor.subscribe("users");
-    let handleRanking = Meteor.subscribe("ranking", props.course._id);
-    let ranking;
-    let users;
-    let handleGraduationCourses = Meteor.subscribe("graduation_courses");
-    let graduationCourse;
-
-    /*if(handleUsers.ready()){
-        users = Meteor.users.find({});
-    }
-    console.log('users = ', users);*/
-
-    if (handleRanking.ready()) {
-        ranking = Ranking.find({}).fetch();
-
-        if (handleGraduationCourses.ready()) {
-            ranking.map((item, i) => {
-                ranking.course = GraduationCourses.findOne({});
-            });
-        }
-    }
-
-
-    return {
-        ranking: ranking,
-        loading: !handleRanking.ready()
-    }
-}, RankingList);
+export default RankingList;

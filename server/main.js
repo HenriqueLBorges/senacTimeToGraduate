@@ -23,22 +23,51 @@ Meteor.publish('ranking', function (id) {
   return Ranking.find({ "course": id });
 });
 
+Meteor.publish('users', function () {
+  return Meteor.users.find({});
+});
+
+
 Meteor.methods({
   'addNewRankingItem': function (item) {
 
     let date = new Date();
     date = moment(date).format('DD-MM-YYYY HH:mm:ss');
-    
+
     Ranking.insert({
       'course': item.course,
-      'name': item.name,
-      'userID': item._id,
+      'userID': item.userID,
       'classes': item.classes,
       'remainingClasses': item.remainingClasses,
       'remainingHours': item.remainingHours,
       'percentage': item.percentage,
       'date': date
     });
+  },
+
+  'getCourseRanking': function (course_id) {
+    let ranking = [];
+    let records = Ranking.aggregate(
+      [
+        { $match: { course: course_id } },
+        { $sort: { userID: 1, date: 1 } },
+        {
+          $group:
+          {
+            _id: "$userID",
+            document_id: { $last: "$_id" }
+          }
+        }
+      ]
+    );
+    records.map((record, i) => {
+      let obj = {
+        user: Meteor.users.findOne({ "_id": record._id }),
+        record: Ranking.findOne({ "_id": record.document_id })
+      }
+      ranking.push(obj);
+    });
+    return ranking;
   }
 });
 
