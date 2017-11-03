@@ -61,13 +61,13 @@ class Home extends Component {
   render() {
     let courses = this.props.graduationCourses;
     return (
-      <div style={{ boxShadow: '1px 1px 1px #888888' }}>
+      <div style= {this.state.start ? { height: '100%' } : { backgroundColor: '#ffffff' }}>
         {this.props.loading ?
           <CircularProgress />
           :
-          <div>
+          <div style={this.state.start && !this.state.about ? { backgroundColor: '#0E6094' } : { backgroundColor: '#ffffff' }}>
             {!this.state.start ?
-              <div style={{ textAlign: 'center' }}>
+              <div style={{ textAlign: 'center', height: '100%' }}>
                 <img src="http://www.go.senac.br/portal/images/logo211x124.jpg" alt="Smiley face" />
                 <h1 style={{ marginTop: '5%', marginBottom: '5%' }}>Calculadora de Graduação</h1>
                 <RaisedButton
@@ -76,7 +76,7 @@ class Home extends Component {
                   containerElement="label"
                   style={{ marginRight: '10%', position: 'relative', bottom: '0' }}
                   buttonStyle={{ backgroundColor: '#ff7f00' }}
-                  labelColor='white'
+                  labelColor='#ffffff'
                   labelStyle={{ fontWeight: 'bold' }}
                   onClick={() => this.setState({ start: !this.state.start, about: !this.state.about })}
                 />
@@ -86,7 +86,7 @@ class Home extends Component {
                   containerElement="label"
                   style={{ position: 'relative', bottom: '0' }}
                   buttonStyle={{ backgroundColor: '#3b5998' }}
-                  labelColor='white'
+                  labelColor='#ffffff'
                   labelStyle={{ fontWeight: 'bold' }}
                   onClick={this.props.currentUser ? () => this.logout() : () => this.login()}
                 />
@@ -96,7 +96,7 @@ class Home extends Component {
                   containerElement="label"
                   style={{ marginLeft: '10%', position: 'relative', bottom: '0' }}
                   buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
-                  labelColor='white'
+                  labelColor='#ffffff'
                   labelStyle={{ fontWeight: 'bold' }}
                   onClick={() => this.props.currentUser ? this.setState({ start: !this.state.start }) : ''}
                   disabled={!this.props.currentUser}
@@ -111,9 +111,9 @@ class Home extends Component {
                     <SelectField
                       floatingLabelText="Curso"
                       value={this.state.value}
-                      labelStyle={{ color: 'white' }}
-                      menuItemStyle={{ color: 'white' }}
-                      listStyle={{ color: 'white', backgroundColor: '#ff7f00' }}
+                      labelStyle={{ color: '#ffffff' }}
+                      menuItemStyle={{ color: '#ffffff' }}
+                      listStyle={{ color: '#ffffff', backgroundColor: '#ff7f00' }}
                       style={{ textAlign: 'left' }}
                     >
                       {courses.map((course, i) => {
@@ -127,7 +127,7 @@ class Home extends Component {
           </div>
         }
         {this.state.showCard ?
-          <Card>
+          <Card style={{height: '88%'}}>
             <CardHeader
               title={'Coordenador'}
               subtitle={this.state.coordinator.name}
@@ -137,14 +137,15 @@ class Home extends Component {
             <CardText>
               {this.state.course.objective}
             </CardText>
-            <CardActions>
+            <CardActions style={{position: 'absolute', bottom: '0px'}}>
               <RaisedButton
                 label="Calcular progresso"
                 labelPosition="before"
                 containerElement="label"
                 buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
-                labelColor={'white'}
+                labelColor={'#ffffff'}
                 labelStyle={{ fontWeight: 'bold' }}
+                //style={{ marginRight: '10%' }}
                 onClick={() => this.props.currentUser ? this.props.history.push('/CalculateTime/') : ''}
                 disabled={!this.props.currentUser}
               />
@@ -154,7 +155,7 @@ class Home extends Component {
                 containerElement="label"
                 style={{ marginBottom: '1.5%' }}
                 buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
-                labelColor='white'
+                labelColor='#ffffff'
                 labelStyle={{ fontWeight: 'bold' }}
                 onClick={() => this.props.history.push('/Ranking/')}
                 disabled={!this.props.currentUser}
@@ -164,10 +165,11 @@ class Home extends Component {
                 labelPosition="before"
                 containerElement="label"
                 backgroundColor={'#ff7f00'}
-                labelColor='white'
+                labelColor='#ffffff'
                 disabledBackgroundColor={'gray'}
                 disabledLabelColor={'black'}
                 labelStyle={{ fontWeight: 'bold' }}
+                //style={{ marginLeft: '10%' }}
                 onClick={() => this.props.currentUser ? this.props.history.push('/ListClasses/') : ''}
                 disabled={!this.props.currentUser}
               />

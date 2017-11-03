@@ -57,7 +57,7 @@ class App extends Component {
     render() {
         return (
             <Theme muiTheme={muiTheme}>
-                <div className="container">
+                <div className="container" style={{height: '100%'}}>
                     {this.props.currentUser ?
                         <Router>
                             <Switch>

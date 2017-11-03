@@ -110,8 +110,8 @@ class ListClasses extends Component {
                             <Table multiSelectable={true} onCellClick={(rowNumber) => this.addNewItem(rowNumber)}>
                                 <TableHeader displaySelectAll={false} style={{ backgroundColor: '#0E6094' }}>
                                     <TableRow>
-                                        <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Disciplina</TableHeaderColumn>
-                                        <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Semestre</TableHeaderColumn>
+                                        <TableHeaderColumn style={{ color: '#ffffff', fontWeight: 'bold' }}>Disciplina</TableHeaderColumn>
+                                        <TableHeaderColumn style={{ color: '#ffffff', fontWeight: 'bold' }}>Semestre</TableHeaderColumn>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -127,14 +127,14 @@ class ListClasses extends Component {
                             <Table selectable={false} adjustForCheckbox={false}>
                                 <TableHeader displaySelectAll={false} style={{ backgroundColor: '#0E6094' }}>
                                     <TableRow>
-                                        <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Disciplina</TableHeaderColumn>
-                                        <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Carga horária</TableHeaderColumn>
-                                        <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Semestre</TableHeaderColumn>
+                                        <TableHeaderColumn style={{ color: '#ffffff', fontWeight: 'bold' }}>Disciplina</TableHeaderColumn>
+                                        <TableHeaderColumn style={{ color: '#ffffff', fontWeight: 'bold' }}>Carga horária</TableHeaderColumn>
+                                        <TableHeaderColumn style={{ color: '#ffffff', fontWeight: 'bold' }}>Semestre</TableHeaderColumn>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody stripedRows={true} displayRowCheckbox={false}>
                                     {classes.map((item, i) => {
-                                        return <TableRow>
+                                        return <TableRow key={i}>
                                             <TableRowColumn tooltip={item.description} style={{ title: item.description }}>{item.name}</TableRowColumn>
                                             <TableRowColumn>{item.hours} horas</TableRowColumn>
                                             <TableRowColumn>{item.semester}º semestre</TableRowColumn>
@@ -149,7 +149,7 @@ class ListClasses extends Component {
                                 labelPosition="before"
                                 containerElement="label"
                                 buttonStyle={{ backgroundColor: '#ff7f00' }}
-                                labelColor='white'
+                                labelColor='#ffffff'
                                 labelStyle={{ fontWeight: 'bold' }}
                                 style={{ float: 'right', marginTop: '5%' }}
                                 onClick={() => this.calculate()}
@@ -162,7 +162,7 @@ class ListClasses extends Component {
                             labelPosition="before"
                             containerElement="label"
                             buttonStyle={{ backgroundColor: '#ff7f00' }}
-                            labelColor='white'
+                            labelColor='#ffffff'
                             labelStyle={{ fontWeight: 'bold' }}
                             style={{ float: 'left', marginTop: '5%' }}
                             onClick={() => this.props.history.push('/')}
@@ -192,7 +192,7 @@ class ListClasses extends Component {
                                         labelPosition="before"
                                         containerElement="label"
                                         buttonStyle={{ backgroundColor: '#ff7f00' }}
-                                        labelColor='white'
+                                        labelColor='#ffffff'
                                         labelStyle={{ fontWeight: 'bold' }}
                                         style={{ float: 'right' }}
                                         onClick={() => this.props.history.push('/Ranking')}
@@ -202,7 +202,7 @@ class ListClasses extends Component {
                                         labelPosition="before"
                                         containerElement="label"
                                         buttonStyle={{ backgroundColor: '#ff7f00' }}
-                                        labelColor='white'
+                                        labelColor='#ffffff'
                                         labelStyle={{ fontWeight: 'bold' }}
                                         style={{ float: 'left' }}
                                         onClick={() => this.props.history.push('/')}

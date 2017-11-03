@@ -25,6 +25,8 @@ class RankingList extends Component {
         let self = this;
         Meteor.call("getCourseRanking", this.props.course._id, function (error, success) {
             if (success) {
+                success.sort((a, b) => a.record.percentage > b.record.percentage);
+                console.log("success = ", success);
                 self.setState({ ranking: success, loading: false })
             }
             else console.log("Error retrieving data");
@@ -35,6 +37,8 @@ class RankingList extends Component {
         let self = this;
         Meteor.call("getCourseRanking", nextProps.course._id, function (error, success) {
             if (success) {
+                success.sort((a, b) => a.record.percentage > b.record.percentage);
+                console.log("success = ", success);
                 self.setState({ ranking: success, loading: false })
             }
             else console.log("Error retrieving data");
@@ -51,15 +55,15 @@ class RankingList extends Component {
                     <Table selectable={false} adjustForCheckbox={false}>
                         <TableHeader displaySelectAll={false} style={{ backgroundColor: '#0E6094' }}>
                             <TableRow>
-                                <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Alunos</TableHeaderColumn>
-                                <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Matérias restantes</TableHeaderColumn>
-                                <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Porcentagem de conclusão do curso</TableHeaderColumn>
-                                <TableHeaderColumn style={{ color: 'white', fontWeight: 'bold' }}>Data do teste</TableHeaderColumn>
+                                <TableHeaderColumn style={{ color: '#ffffff', fontWeight: 'bold' }}>Alunos</TableHeaderColumn>
+                                <TableHeaderColumn style={{ color: '#ffffff', fontWeight: 'bold' }}>Matérias restantes</TableHeaderColumn>
+                                <TableHeaderColumn style={{ color: '#ffffff', fontWeight: 'bold' }}>Porcentagem de conclusão do curso</TableHeaderColumn>
+                                <TableHeaderColumn style={{ color: '#ffffff', fontWeight: 'bold' }}>Data do teste</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
                         <TableBody stripedRows={true} displayRowCheckbox={false}>
                             {ranking.map((student, i) => {
-                                return <TableRow rowNumber={i + 1}>
+                                return <TableRow key={i} rowNumber={i + 1}>
                                     <TableRowColumn>{student.user.profile.name}</TableRowColumn>
                                     <TableRowColumn>{student.record.remainingClasses.length} matérias</TableRowColumn>
                                     <TableRowColumn>{student.record.percentage}% concluído</TableRowColumn>
@@ -74,7 +78,7 @@ class RankingList extends Component {
                     labelPosition="before"
                     containerElement="label"
                     buttonStyle={{ backgroundColor: '#ff7f00' }}
-                    labelColor='white'
+                    labelColor='#ffffff'
                     labelStyle={{ fontWeight: 'bold' }}
                     style={{ float: 'left', marginTop: '5%' }}
                     onClick={() => this.props.history.push('/')}
