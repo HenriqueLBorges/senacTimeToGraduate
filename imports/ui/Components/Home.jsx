@@ -145,7 +145,6 @@ class Home extends Component {
                 buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
                 labelColor={'#ffffff'}
                 labelStyle={{ fontWeight: 'bold' }}
-                //style={{ marginRight: '10%' }}
                 onClick={() => this.props.currentUser ? this.props.history.push('/CalculateTime/') : ''}
                 disabled={!this.props.currentUser}
               />
@@ -169,7 +168,6 @@ class Home extends Component {
                 disabledBackgroundColor={'gray'}
                 disabledLabelColor={'black'}
                 labelStyle={{ fontWeight: 'bold' }}
-                //style={{ marginLeft: '10%' }}
                 onClick={() => this.props.currentUser ? this.props.history.push('/ListClasses/') : ''}
                 disabled={!this.props.currentUser}
               />

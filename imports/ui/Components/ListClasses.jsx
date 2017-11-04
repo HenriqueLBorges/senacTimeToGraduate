@@ -48,6 +48,7 @@ class ListClasses extends Component {
         let semesters = [];
         let finishedSemesters = [];
 
+        //Initiates the semester's array 
         for (let i = 0; i < this.props.course.semesters; i++)
             semesters.push(false);
 
@@ -78,6 +79,7 @@ class ListClasses extends Component {
         let concludedHours = totalHours - remaingHours;
         let percentage = ((concludedHours * 100) / totalHours);
 
+        //Mounts the object
         let item = {
             course: course,
             userID: this.props.currentUser._id,
@@ -87,6 +89,7 @@ class ListClasses extends Component {
             percentage: percentage.toFixed(1)
         }
         
+        //Saves the document in ranking collection
         Meteor.call('addNewRankingItem', item);
 
         this.setState({ classes: classes, remaingClasses: remaingClasses, remaingHours: remaingHours, semesters: finishedSemesters.length, totalHours: totalHours, percentage: percentage }, () => {
@@ -196,7 +199,7 @@ class ListClasses extends Component {
                                         labelStyle={{ fontWeight: 'bold' }}
                                         style={{ float: 'right' }}
                                         onClick={() => this.props.history.push('/Ranking')}
-                                    />,
+                                    />
                                     <RaisedButton
                                         label="Voltar"
                                         labelPosition="before"
@@ -228,7 +231,6 @@ export default createContainer((props) => {
         classes.map((item, i) => {
             allClasses.push(i);
         })
-        //console.log('classesNotSelected ', allClasses);
     }
 
     return {

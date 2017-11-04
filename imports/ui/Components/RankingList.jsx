@@ -23,10 +23,9 @@ class RankingList extends Component {
 
     componentDidMount() {
         let self = this;
-        Meteor.call("getCourseRanking", this.props.course._id, function (error, success) {
+        Meteor.call("getCourseRanking", this.props.course._id, function (error, success) { //Gets the students ranking of the course
             if (success) {
-                success.sort((a, b) => a.record.percentage > b.record.percentage);
-                console.log("success = ", success);
+                success.sort((a, b) => b.record.percentage - a.record.percentage); //Descending order
                 self.setState({ ranking: success, loading: false })
             }
             else console.log("Error retrieving data");
@@ -35,10 +34,9 @@ class RankingList extends Component {
 
     componentWillReceiveProps(nextProps) {
         let self = this;
-        Meteor.call("getCourseRanking", nextProps.course._id, function (error, success) {
+        Meteor.call("getCourseRanking", nextProps.course._id, function (error, success) { //Gets the students ranking of the course
             if (success) {
-                success.sort((a, b) => a.record.percentage > b.record.percentage);
-                console.log("success = ", success);
+                success.sort((a, b) => b.record.percentage - a.record.percentage); //Descending order
                 self.setState({ ranking: success, loading: false })
             }
             else console.log("Error retrieving data");
