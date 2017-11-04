@@ -10,6 +10,8 @@ import Dialog from 'material-ui/Dialog';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import CircularProgress from 'material-ui/CircularProgress';
 import RaisedButton from 'material-ui/RaisedButton';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import Divider from 'material-ui/Divider';
 
 // Classes component - represents a list of the course's classes
 class ListClasses extends Component {
@@ -22,7 +24,8 @@ class ListClasses extends Component {
             remaingHours: 0,
             totalHours: 0,
             openDialog: false,
-            percentage: 0.0
+            percentage: 0.0,
+            shareOption: 0
         }
     }
 
@@ -84,11 +87,12 @@ class ListClasses extends Component {
             course: course,
             userID: this.props.currentUser._id,
             classes: classes,
+            share: this.state.shareOption == 1 ? true : false,
             remainingClasses: remaingClassesAux,
             remainingHours: remaingHours,
             percentage: percentage.toFixed(1)
         }
-        
+
         //Saves the document in ranking collection
         Meteor.call('addNewRankingItem', item);
 
@@ -99,6 +103,10 @@ class ListClasses extends Component {
 
     handleDialog() {
         this.setState({ openDialog: !this.state.openDialog });
+    }
+
+    handleShareOptions(value) {
+        this.setState({ shareOption: value });
     }
 
     render() {
@@ -147,16 +155,36 @@ class ListClasses extends Component {
                             </Table>
                         }
                         {this.props.calculate ?
-                            <RaisedButton
-                                label="Calcular"
-                                labelPosition="before"
-                                containerElement="label"
-                                buttonStyle={{ backgroundColor: '#ff7f00' }}
-                                labelColor='#ffffff'
-                                labelStyle={{ fontWeight: 'bold' }}
-                                style={{ float: 'right', marginTop: '5%' }}
-                                onClick={() => this.calculate()}
-                            />
+                            <div>
+                                <div style={{ textAlign: "center" }}>
+                                    <Divider style={{ marginBottom: "2vh" }} />
+                                    Deseja compartilhar seus dados no ranking do curso?
+                                <RadioButtonGroup defaultSelected="0" style={{ marginTop: "2vh" }} onChange={(ev) => this.handleShareOptions(ev.target.value)} valueSelected={this.state.shareOption}>
+                                        <RadioButton
+                                            value="1"
+                                            label="Compartilhar"
+                                            labelStyle={{ fontWeight: "100" }}
+                                            style={{ fontWeight: "100" }}
+                                        />
+                                        <RadioButton
+                                            value="0"
+                                            label="Não Compartilhar"
+                                            labelStyle={{ fontWeight: "100" }}
+                                            style={{ fontWeight: "100" }}
+                                        />
+                                    </RadioButtonGroup>
+                                </div>
+                                <RaisedButton
+                                    label="Calcular"
+                                    labelPosition="before"
+                                    containerElement="label"
+                                    buttonStyle={{ backgroundColor: '#ff7f00' }}
+                                    labelColor='#ffffff'
+                                    labelStyle={{ fontWeight: 'bold' }}
+                                    style={{ float: 'right', marginTop: '5%' }}
+                                    onClick={() => this.calculate()}
+                                />
+                            </div>
                             :
                             ''
                         }
@@ -188,8 +216,7 @@ class ListClasses extends Component {
                                     <li>Restam {this.state.remaingHours} horas para você concluir o curso.</li>
                                 </ul>
                                 "Keep moving foward! That's how winning is done!" - Rocky Balboa.
-
-                                    <div style={{ marginTop: "3%" }}>
+                                <div style={{ marginTop: "3%" }}>
                                     <RaisedButton
                                         label="Ranking do curso"
                                         labelPosition="before"

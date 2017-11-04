@@ -38,6 +38,7 @@ Meteor.methods({
       'course': item.course,
       'userID': item.userID,
       'classes': item.classes,
+      'share': item.share,
       'remainingClasses': item.remainingClasses,
       'remainingHours': item.remainingHours,
       'percentage': item.percentage,
@@ -49,7 +50,7 @@ Meteor.methods({
     let ranking = [];
     let records = Ranking.aggregate(
       [
-        { $match: { course: course_id } },
+        { $match: { course: course_id, share: true } },
         { $sort: { userID: 1, date: 1 } },
         {
           $group:
