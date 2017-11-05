@@ -22,7 +22,7 @@ SenacTimeToGraduate uses [MongoDB](http://mrdoob.com/projects/code-editor/) to r
 }
 ```
 * _id - holds an ObjectId
-* name - professor name
+* name - professor's name
 * photo - photo URL
 * email - Optional
 * cellphone - Optional
@@ -54,7 +54,7 @@ SenacTimeToGraduate uses [MongoDB](http://mrdoob.com/projects/code-editor/) to r
 ```
 * hours - total of hours
 * professors - it can be used to store collection professors ObjectId's (Optional).
-* semester - class semester
+* semester - class' semester
 * course_id - it stores at least one collection graduation_courses ObjectId
 
 ###### users
