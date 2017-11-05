@@ -1,7 +1,7 @@
 # SenacTimeToGraduate:
 
 ## About the app:
-[SenacTimeToGraduate](https://senactimetograduate.herokuapp.com/) is a [Meteor](https://www.meteor.com/) app that uses [React](https://reactjs.org/), built to study these technologies. It's objective is to [Senac](http://www.sp.senac.br/jsp/default.jsp?newsID=0) students to interact with it, calculates their left time on graduation, bring together students and of course encourage them to continue their graduation courses. With this app students can also learn more about [Meteor](https://www.meteor.com/) apps, [React library](https://reactjs.org/) and [document oriented databases](https://www.mongodb.com/document-databases)
+[SenacTimeToGraduate](https://senactimetograduate.herokuapp.com/) is a [Meteor](https://www.meteor.com/) app that uses [React](https://reactjs.org/), built to study these technologies. It's objective is to [Senac](http://www.sp.senac.br/jsp/default.jsp?newsID=0) students to interact with it, calculates their left time on graduation, bring together students and of course encourage them to continue their graduation courses. With this app students can also learn more about [Meteor](https://www.meteor.com/) apps, [React library](https://reactjs.org/) and [document oriented databases](https://www.mongodb.com/document-databases).
 
 ## How it works:
 [SenacTimeToGraduate](https://senactimetograduate.herokuapp.com/) uses [login with Facebook](https://guide.meteor.com/accounts.html) to creates new users, these users can take completion tests on any Senac course registered, after completing the test the user can optionally share it's result on the course ranking. If the user doesn't choose to share it's progress his data remains totally private.
