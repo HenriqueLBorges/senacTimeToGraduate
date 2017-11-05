@@ -88,7 +88,7 @@ SenacTimeToGraduate uses [MongoDB](http://mrdoob.com/projects/code-editor/) to r
 }
 
 ```
-The insert of an object in the collection users is done automatically after the user log into Facebook. The only field that are being used by this app are the **profile.name** and the **_id**.
+The insertion of an object in the collection users is done automatically after the user log into Facebook. The only field that are being used by this app are the **profile.name** and the **_id**.
 
 ###### ranking
 ```javascript
