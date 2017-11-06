@@ -110,7 +110,7 @@ The insertion of an object in the collection users is done automatically after t
 * share - If true the user wants this data to be shown at the course ranking page
 * remainingClasses - It stores an array of collection classes ObjectId's. The classes in this array are the ones not completed by the user
 * ramainingHours - Saves the total of remaining hours
-* percentage - Saves the complete percentage of the course
+* percentage - Saves the conslusion percentage of the course
 * date - document creation date
 
 ## Contributing:
