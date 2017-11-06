@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
+import Radium, { Style } from 'radium';
 
 //Components
 import AccountsUIWrapper from '../AccountsUIWrapper.jsx';
@@ -13,6 +14,8 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 
+const web = '@media(min-width: 992px)';
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +26,26 @@ class Home extends Component {
       course: {},
       about: false,
       coordinator: {}
+    }
+    this.styles = {
+      midButton: {
+        position: 'absolute',
+        bottom: '0',
+        display: "table-footer-group",
+        marginLeft: web ? '40%' : "38.5%",
+        marginRight: web ? '30%' : "35%",
+      },
+      rightButton: {
+        marginLeft: web ? '91%' : '88%',
+        position: 'absolute',
+        bottom: '0',
+        display: "table-footer-group"
+      },
+      title: { 
+        marginTop: '5%', 
+        marginBottom: '5%',
+        fontSize: web ? "450%" : "330%"
+      }
     }
   }
 
@@ -37,7 +60,7 @@ class Home extends Component {
   }
 
   login() {
-    const loginStyle = (Meteor.isCordova ? 'redirect' : 'popup');
+    const loginStyle = (Meteor.isCordova ? 'redirect' : 'redirect');
 
     Meteor.loginWithFacebook({
       loginStyle: loginStyle,
@@ -61,46 +84,48 @@ class Home extends Component {
   render() {
     let courses = this.props.graduationCourses;
     return (
-      <div style= {this.state.start ? { height: '100%' } : { backgroundColor: '#ffffff' }}>
+      <div style={this.state.start ? { height: '100%' } : { backgroundColor: '#ffffff', height: '100%' }}>
         {this.props.loading ?
           <CircularProgress />
           :
-          <div style={this.state.start && !this.state.about ? { backgroundColor: '#0E6094' } : { backgroundColor: '#ffffff' }}>
+          <div style={this.state.start && !this.state.about ? { backgroundColor: '#0E6094', height: '100%' } : { backgroundColor: '#ffffff', height: '100%' }}>
             {!this.state.start ?
               <div style={{ textAlign: 'center', height: '100%' }}>
                 <img src="http://www.go.senac.br/portal/images/logo211x124.jpg" alt="Smiley face" />
-                <h1 style={{ marginTop: '5%', marginBottom: '5%' }}>Calculadora de Graduação</h1>
-                <RaisedButton
-                  label="Sobre"
-                  labelPosition="before"
-                  containerElement="label"
-                  style={{ marginRight: '10%', position: 'relative', bottom: '0' }}
-                  buttonStyle={{ backgroundColor: '#ff7f00' }}
-                  labelColor='#ffffff'
-                  labelStyle={{ fontWeight: 'bold' }}
-                  onClick={() => this.setState({ start: !this.state.start, about: !this.state.about })}
-                />
-                <RaisedButton
-                  label={this.props.currentUser ? "Logout" : "Entrar com o Facebook"}
-                  labelPosition="before"
-                  containerElement="label"
-                  style={{ position: 'relative', bottom: '0' }}
-                  buttonStyle={{ backgroundColor: '#3b5998' }}
-                  labelColor='#ffffff'
-                  labelStyle={{ fontWeight: 'bold' }}
-                  onClick={this.props.currentUser ? () => this.logout() : () => this.login()}
-                />
-                <RaisedButton
-                  label="Começar"
-                  labelPosition="before"
-                  containerElement="label"
-                  style={{ marginLeft: '10%', position: 'relative', bottom: '0' }}
-                  buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
-                  labelColor='#ffffff'
-                  labelStyle={{ fontWeight: 'bold' }}
-                  onClick={() => this.props.currentUser ? this.setState({ start: !this.state.start }) : ''}
-                  disabled={!this.props.currentUser}
-                />
+                <h1 style={this.styles.title}>Calculadora de Graduação</h1>
+                <div style={{ bottom: "0px" }}>
+                  <RaisedButton
+                    label="Sobre"
+                    labelPosition="before"
+                    containerElement="label"
+                    style={{ marginRight: '10%', position: 'absolute', bottom: '0', display: "table-footer-group", float: "left" }}
+                    buttonStyle={{ backgroundColor: '#ff7f00' }}
+                    labelColor='#ffffff'
+                    labelStyle={{ fontWeight: 'bold' }}
+                    onClick={() => this.setState({ start: !this.state.start, about: !this.state.about })}
+                  />
+                  <RaisedButton
+                    label={this.props.currentUser ? "Logout" : "Entrar com o Facebook"}
+                    labelPosition="before"
+                    containerElement="label"
+                    style={this.styles.midButton}
+                    buttonStyle={{ backgroundColor: '#3b5998' }}
+                    labelColor='#ffffff'
+                    labelStyle={{ fontWeight: 'bold' }}
+                    onClick={this.props.currentUser ? () => this.logout() : () => this.login()}
+                  />
+                  <RaisedButton
+                    label="Começar"
+                    labelPosition="before"
+                    containerElement="label"
+                    style={this.styles.rightButton}
+                    buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
+                    labelColor='#ffffff'
+                    labelStyle={{ fontWeight: 'bold' }}
+                    onClick={() => this.props.currentUser ? this.setState({ start: !this.state.start }) : ''}
+                    disabled={!this.props.currentUser}
+                  />
+                </div>
               </div>
               :
               <div>
@@ -127,7 +152,7 @@ class Home extends Component {
           </div>
         }
         {this.state.showCard ?
-          <Card style={{height: '88%'}}>
+          <Card style={{ height: '88%' }}>
             <CardHeader
               title={'Coordenador'}
               subtitle={this.state.coordinator.name}
@@ -137,7 +162,7 @@ class Home extends Component {
             <CardText>
               {this.state.course.objective}
             </CardText>
-            <CardActions style={{position: 'absolute', bottom: '0px'}}>
+            <CardActions style={{ position: 'absolute', bottom: '0px' }}>
               <RaisedButton
                 label="Calcular progresso"
                 labelPosition="before"
@@ -178,4 +203,5 @@ class Home extends Component {
     )
   }
 }
-export default Home;
+
+export default Radium(Home);
