@@ -32,7 +32,7 @@ class Home extends Component {
         position: 'absolute',
         bottom: '0',
         display: "table-footer-group",
-        marginLeft: web ? '40%' : "38.5%",
+        marginLeft: web ? this.props.currentUser ? '47%' : "40%" : "38.5%",
         marginRight: web ? '30%' : "35%",
       },
       rightButton: {
