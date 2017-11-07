@@ -101,7 +101,7 @@ class Home extends Component {
                     style={{ marginRight: '10%', position: 'absolute', bottom: '0', display: "table-footer-group", float: "left" }}
                     buttonStyle={{ backgroundColor: '#ff7f00' }}
                     labelColor='#ffffff'
-                    labelStyle={{ fontWeight: 'bold' }}
+                    labelStyle={{ fontWeight: 'bold', height:"20px" }}
                     onClick={() => this.setState({ start: !this.state.start, about: !this.state.about })}
                   />
                   <RaisedButton
@@ -111,7 +111,7 @@ class Home extends Component {
                     style={this.styles.midButton}
                     buttonStyle={{ backgroundColor: '#3b5998' }}
                     labelColor='#ffffff'
-                    labelStyle={{ fontWeight: 'bold' }}
+                    labelStyle={{ fontWeight: 'bold', height:"20px" }}
                     onClick={this.props.currentUser ? () => this.logout() : () => this.login()}
                   />
                   <RaisedButton
@@ -121,7 +121,7 @@ class Home extends Component {
                     style={this.styles.rightButton}
                     buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
                     labelColor='#ffffff'
-                    labelStyle={{ fontWeight: 'bold' }}
+                    labelStyle={{ fontWeight: 'bold', height:"20px" }}
                     onClick={() => this.props.currentUser ? this.setState({ start: !this.state.start }) : ''}
                     disabled={!this.props.currentUser}
                   />
