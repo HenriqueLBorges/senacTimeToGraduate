@@ -88,7 +88,7 @@ class Home extends Component {
         {this.props.loading ?
           <CircularProgress />
           :
-          <div style={this.state.start && !this.state.about ? { backgroundColor: '#0E6094', height: '100%' } : { backgroundColor: '#ffffff', height: '100%' }}>
+          <div style={this.state.start && !this.state.about ? { backgroundColor: '#0E6094' } : { backgroundColor: '#ffffff', height: '100%' }}>
             {!this.state.start ?
               <div style={this.state.start ? { textAlign: 'center' } : { textAlign: 'center', height: '100%' }}>
                 <img src="http://www.go.senac.br/portal/images/logo211x124.jpg" alt="Smiley face" />
