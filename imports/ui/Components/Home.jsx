@@ -41,8 +41,8 @@ class Home extends Component {
         bottom: '0',
         display: "table-footer-group"
       },
-      title: { 
-        marginTop: '5%', 
+      title: {
+        marginTop: '5%',
         marginBottom: '5%',
         fontSize: web ? "450%" : "330%"
       }
@@ -90,7 +90,7 @@ class Home extends Component {
           :
           <div style={this.state.start && !this.state.about ? { backgroundColor: '#0E6094', height: '100%' } : { backgroundColor: '#ffffff', height: '100%' }}>
             {!this.state.start ?
-              <div style={{ textAlign: 'center', height: '100%' }}>
+              <div style={this.state.start ? { textAlign: 'center' } : { textAlign: 'center', height: '100%' }}>
                 <img src="http://www.go.senac.br/portal/images/logo211x124.jpg" alt="Smiley face" />
                 <h1 style={this.styles.title}>Calculadora de Graduação</h1>
                 <div style={{ bottom: "0px" }}>
@@ -101,7 +101,7 @@ class Home extends Component {
                     style={{ marginRight: '10%', position: 'absolute', bottom: '0', display: "table-footer-group", float: "left" }}
                     buttonStyle={{ backgroundColor: '#ff7f00' }}
                     labelColor='#ffffff'
-                    labelStyle={{ fontWeight: 'bold', height:"20px" }}
+                    labelStyle={{ fontWeight: 'bold', height: "20px" }}
                     onClick={() => this.setState({ start: !this.state.start, about: !this.state.about })}
                   />
                   <RaisedButton
@@ -111,7 +111,7 @@ class Home extends Component {
                     style={this.styles.midButton}
                     buttonStyle={{ backgroundColor: '#3b5998' }}
                     labelColor='#ffffff'
-                    labelStyle={{ fontWeight: 'bold', height:"20px" }}
+                    labelStyle={{ fontWeight: 'bold', height: "20px" }}
                     onClick={this.props.currentUser ? () => this.logout() : () => this.login()}
                   />
                   <RaisedButton
@@ -121,7 +121,7 @@ class Home extends Component {
                     style={this.styles.rightButton}
                     buttonStyle={this.props.currentUser ? { backgroundColor: '#ff7f00' } : { backgroundColor: 'gray' }}
                     labelColor='#ffffff'
-                    labelStyle={{ fontWeight: 'bold', height:"20px" }}
+                    labelStyle={{ fontWeight: 'bold', height: "20px" }}
                     onClick={() => this.props.currentUser ? this.setState({ start: !this.state.start }) : ''}
                     disabled={!this.props.currentUser}
                   />
