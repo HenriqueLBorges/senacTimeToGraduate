@@ -12,7 +12,7 @@ import Home from './Components/Home.jsx';
 import About from './Components/About.jsx';
 import ListClasses from './Components/ListClasses.jsx';
 import RankingList from './Components/RankingList.jsx';
-import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+import Courses from './Components/Courses.jsx';
 
 //Material-ui
 import { default as Theme } from 'material-ui/styles/MuiThemeProvider';
@@ -57,7 +57,7 @@ class App extends Component {
     render() {
         return (
             <Theme muiTheme={muiTheme}>
-                <div className="container" style={{height: '100%'}}>
+                <div className="container" style={{ height: '100%' }}>
                     {this.props.currentUser ?
                         <Router>
                             <Switch>
@@ -96,6 +96,17 @@ class App extends Component {
                                     render={(props) =>
                                         <RankingList
                                             course={this.state.course}
+                                            {...props} />
+                                    }
+                                />
+                                <Route path='/Courses'
+                                    render={(props) =>
+                                        <Courses
+                                            graduationCourses={this.props.graduationCourses}
+                                            professors={this.props.professors}
+                                            loading={this.props.loading}
+                                            setCourse={this.setCourse.bind(this)}
+                                            currentUser={this.props.currentUser}
                                             {...props} />
                                     }
                                 />
