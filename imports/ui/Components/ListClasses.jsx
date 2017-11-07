@@ -158,19 +158,15 @@ class ListClasses extends Component {
                             <div>
                                 <div style={{ textAlign: "center" }}>
                                     <Divider style={{ marginBottom: "2vh" }} />
-                                    <span style={{fontSize: "large"}}>Deseja compartilhar seus dados no ranking do curso?</span>
+                                    <span style={{fontSize: "large", fontWeight: "100"}}>Deseja compartilhar seus dados no ranking do curso?</span>
                                 <RadioButtonGroup defaultSelected="0" style={{ marginTop: "2vh" }} onChange={(ev) => this.handleShareOptions(ev.target.value)} valueSelected={this.state.shareOption}>
                                         <RadioButton
                                             value="1"
                                             label="Compartilhar"
-                                            labelStyle={{ fontWeight: "100" }}
-                                            style={{ fontWeight: "100" }}
                                         />
                                         <RadioButton
                                             value="0"
                                             label="Não Compartilhar"
-                                            labelStyle={{ fontWeight: "100" }}
-                                            style={{ fontWeight: "100" }}
                                         />
                                     </RadioButtonGroup>
                                 </div>
