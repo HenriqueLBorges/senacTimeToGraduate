@@ -113,5 +113,8 @@ The insertion of an object in the collection users is done automatically after t
 * percentage - Saves the conslusion percentage of the course
 * date - document creation date
 
+### Where is it?
+[SenacTimeToGraduate](https://senactimetograduate.herokuapp.com/) is at a cloud plataform named [Heroku](https://www.heroku.com). You can find how to deploy your meteor apps with heroku and [mlab](https://mlab.com) for your mongoDB [here](https://medium.com/@leonardykris/how-to-run-a-meteor-js-application-on-heroku-in-10-steps-7aceb12de234).
+
 ## Contributing:
 The main purpose of this repository is to help people who want to study web apps development. Feel free to modify as you want or to help with bugfixes and improvements.

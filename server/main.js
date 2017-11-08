@@ -6,7 +6,8 @@ import { Classes } from '../imports/api/classes.js';
 import { Professors } from '../imports/api/professors.js';
 import { Ranking } from '../imports/api/ranking.js';
 
-//Publishs
+/*Publishs
+These functions control how Meteor servers publish sets of records and how clients can subscribe to those sets.*/
 Meteor.publish('graduation_courses', function () {
   return GraduationCourses.find({});
 });
@@ -27,10 +28,9 @@ Meteor.publish('users', function () {
   return Meteor.users.find({});
 });
 
-
 Meteor.methods({
   'addNewRankingItem': function (item) {
-
+    //Adds a new item to the collection ranking
     let date = new Date();
     date = moment(date).format('DD-MM-YYYY HH:mm:ss');
 
@@ -47,6 +47,7 @@ Meteor.methods({
   },
 
   'getCourseRanking': function (course_id) {
+    //Gets the last inserted document of each user who shared his progress in the course test.
     let ranking = [];
     let records = Ranking.aggregate(
       [
@@ -81,6 +82,7 @@ ServiceConfiguration.configurations.remove({
 });
 
 ServiceConfiguration.configurations.insert({
+  //Facebook API - Used to login with facebook
   service: "facebook",
   appId: '768369383349097', //Production
   secret: '06492eb705ba5b4c517344cc96bc412b' //Production

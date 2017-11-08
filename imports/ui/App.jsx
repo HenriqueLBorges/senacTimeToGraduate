@@ -64,10 +64,7 @@ class App extends Component {
                                 <Route exact path='/'
                                     render={(props) =>
                                         <Home
-                                            graduationCourses={this.props.graduationCourses}
-                                            professors={this.props.professors}
                                             loading={this.props.loading}
-                                            setCourse={this.setCourse.bind(this)}
                                             currentUser={this.props.currentUser}
                                             {...props} />
                                     }
@@ -114,10 +111,7 @@ class App extends Component {
                         </Router>
                         :
                         <Home
-                            graduationCourses={this.props.graduationCourses}
-                            professors={this.props.professors}
                             loading={this.props.loading}
-                            setCourse={this.setCourse.bind(this)}
                             currentUser={this.props.currentUser}
                         />
                     }
@@ -128,6 +122,8 @@ class App extends Component {
 }
 
 export default createContainer(() => {
+    //A container does data fetching and then renders its corresponding sub-components.
+
     let handleGraduationCourses = Meteor.subscribe("graduation_courses");
     let graduationCourses;
     let handleProfessors = Meteor.subscribe("professors");
