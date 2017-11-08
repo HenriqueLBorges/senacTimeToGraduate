@@ -53,9 +53,9 @@ SenacTimeToGraduate uses [MongoDB](http://mrdoob.com/projects/code-editor/) to r
 }
 ```
 * hours - total of hours
-* professors - it can be used to store professors collection ObjectId's (Optional).
+* professors - it can be used to store professors collection ObjectId's (Optional)
 * semester - class' semester
-* course_id - it stores at least one collection graduation_courses ObjectId
+* course_id - it stores at least one graduation_courses collection ObjectId
 
 ###### users
 ```javascript
@@ -108,7 +108,7 @@ The insertion of an object in the users collection is done automatically after t
 * userID - users collection matching ObjectId
 * classes - It stores an array of classes collection ObjectId's. The classes in this array are the ones completed by the user.
 * share - If true the user wants this data to be shown at the course ranking page
-* remainingClasses - It stores an classes collection ObjectId's array. The classes in this array are the ones not completed by the user
+* remainingClasses - It stores a classes collection ObjectId's array. The classes in this array are the ones not completed by the user
 * ramainingHours - Saves the total of remaining hours
 * percentage - Saves the conslusion percentage of the course
 * date - document creation date
