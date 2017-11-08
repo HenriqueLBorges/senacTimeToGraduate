@@ -4,7 +4,7 @@
 [SenacTimeToGraduate](https://senactimetograduate.herokuapp.com/) is a [Meteor](https://www.meteor.com/) app that uses [React](https://reactjs.org/), built to study these technologies. It's objective is to [Senac](http://www.sp.senac.br/jsp/default.jsp?newsID=0) students to interact with it, calculates their left time on graduation, bring together students and of course encourage them to continue their graduation courses. With this app students can also learn more about [Meteor](https://www.meteor.com/) apps, [React library](https://reactjs.org/) and [document oriented databases](https://www.mongodb.com/document-databases).
 
 ## How it works:
-[SenacTimeToGraduate](https://senactimetograduate.herokuapp.com/) uses [login with Facebook](https://guide.meteor.com/accounts.html) to creates new users, these users can take completion tests on any Senac course registered, after completing the test the user can optionally share it's result on the course ranking. If the user doesn't choose to share it's progress his data remains totally private.
+[SenacTimeToGraduate](https://senactimetograduate.herokuapp.com/) uses [login with Facebook](https://guide.meteor.com/accounts.html) to creates new users, these users can take completion tests on any Senac course in the database, after completing the test the user can optionally share it's result on the course completion ranking. If the user doesn't choose to share it's progress his data remains totally private.
 
 ### Database
 SenacTimeToGraduate uses [MongoDB](http://mrdoob.com/projects/code-editor/) to record data. The [collections](https://docs.mongodb.com/v3.2/core/databases-and-collections/) used in this app are described bellow.
@@ -53,7 +53,7 @@ SenacTimeToGraduate uses [MongoDB](http://mrdoob.com/projects/code-editor/) to r
 }
 ```
 * hours - total of hours
-* professors - it can be used to store collection professors ObjectId's (Optional).
+* professors - it can be used to store professors collection ObjectId's (Optional).
 * semester - class' semester
 * course_id - it stores at least one collection graduation_courses ObjectId
 
@@ -88,7 +88,7 @@ SenacTimeToGraduate uses [MongoDB](http://mrdoob.com/projects/code-editor/) to r
 }
 
 ```
-The insertion of an object in the collection users is done automatically after the user logged into Facebook. The only field that are being used by this app are the **profile.name** and the **_id**.
+The insertion of an object in the users collection is done automatically after the user logged into Facebook. The only fields that are being used by this app are the **profile.name** and the **_id**.
 
 ###### ranking
 ```javascript
@@ -104,11 +104,11 @@ The insertion of an object in the collection users is done automatically after t
 	"date" : Date
 }
 ```
-* course - collection graduation_courses matching ObjectId
-* userID - collection users matching ObjectId
-* classes - It stores an array of collection classes ObjectId's. The classes in this array are the ones completed by the user.
+* course - graduation_courses collection matching ObjectId
+* userID - users collection matching ObjectId
+* classes - It stores an array of classes collection ObjectId's. The classes in this array are the ones completed by the user.
 * share - If true the user wants this data to be shown at the course ranking page
-* remainingClasses - It stores an array of collection classes ObjectId's. The classes in this array are the ones not completed by the user
+* remainingClasses - It stores an classes collection ObjectId's array. The classes in this array are the ones not completed by the user
 * ramainingHours - Saves the total of remaining hours
 * percentage - Saves the conslusion percentage of the course
 * date - document creation date
