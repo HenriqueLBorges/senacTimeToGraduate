@@ -79,6 +79,7 @@ class Home extends Component {
           <div style={{ height: '100%' }}>
             {!this.state.about ?
               <div style={{ textAlign: 'center', height: '100%' }}>
+                <img src="images/react.png" />
                 <h1 style={this.styles.title}>Calculadora de Graduação</h1>
                 <div style={{ bottom: "0px" }}>
                   <RaisedButton
