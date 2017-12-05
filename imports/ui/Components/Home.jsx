@@ -79,7 +79,7 @@ class Home extends Component {
           <div style={{ height: '100%' }}>
             {!this.state.about ?
               <div style={{ textAlign: 'center', height: '100%' }}>
-                <img src="images/home.png" />
+                <img src="images/home.png" width="1000px" />
                 <h1 className="animated infinite bounce" style={this.styles.title}>SENAC Calculadora de Graduação</h1>
                 <div style={{ bottom: "0px" }}>
                   <RaisedButton
